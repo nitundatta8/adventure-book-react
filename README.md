@@ -11,6 +11,8 @@ _July 17, 2020_
 ## Component Tree
 ![Diagram](./public/capstoneDiagram1.png)
 
+### Website Template
+![Diagram](./public/img/AdventureBookSite.png)
 ## Setup/Installation Requirements
 
 * Clone this repository from GitHub.

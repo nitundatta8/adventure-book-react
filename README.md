@@ -13,6 +13,7 @@ _July 17, 2020_
 
 ### Website Template
 ![Diagram](./public/img/AdventureBookSite.png)
+
 ## Setup/Installation Requirements
 
 * Clone this repository from GitHub.
@@ -31,7 +32,7 @@ _July 17, 2020_
 
 ### No bugs have been identified at the time of this update.
 
-### Support and Contact Information
+## Support and Contact Information
 
 ### Please contact me with any suggestions or questions at nitun.2@gmail.com. Thank you for your input!  
   

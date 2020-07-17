@@ -8,6 +8,9 @@ _July 17, 2020_
 ### Adventure lovers can share their outdoor activity pictures and stories on this website. So other users can view  their pictures and learn about places and activities. Users can comment and like the picture.
 ### Advertising partners can post add on their outdoor gears, clothes, bag, tent, etc. with product URL and details. When a user will post a picture, they can tag all the outdoor gears or other stuff in the picture. If other user clicks on those tag items, they will be redirected to the product website. For each click user who posted that picture will earn a commission for flowing traffic to the product site.
 
+## Component Tree
+![Diagram](./public/capstoneDiagram1.png)
+
 ## Setup/Installation Requirements
 
 * Clone this repository from GitHub.

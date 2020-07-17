@@ -7,12 +7,14 @@ function Header(props) {
   const StyleHeader = styled.section`
     display: flex,
     margin: 5px,
-    backgroundColor: #06155c,
+    background-color: orange;
     fontSize: '30px',
-    color: 'ivory',
-    width: '100%',
-    borderBottom: 5px solid black
+    color: ivory,
+    width: 100%,
+    border-Bottom: 5px solid black
   `;
+
+
 
   const NavBar = styled.ul`
     list-style-type: none;
@@ -70,8 +72,10 @@ function Header(props) {
         </NavBar>
 
       </StyleHeader>
-
     </React.Fragment>
+
+
+
   );
 }
 

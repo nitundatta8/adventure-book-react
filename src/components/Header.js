@@ -65,7 +65,7 @@ function Header(props) {
             <Link to='/link1' >Link1</Link>
           </NavItem>
           <NavItem>
-            <Link to='/#about'>About</Link>
+            <Link to='/home'>Home</Link>
           </NavItem>
         </NavBar>
 

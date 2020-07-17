@@ -3,6 +3,17 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Header(props) {
+  //not working
+  const StyleHeader = styled.section`
+    display: flex,
+    margin: 5px,
+    backgroundColor: #06155c,
+    fontSize: '30px',
+    color: 'ivory',
+    width: '100%',
+    borderBottom: 5px solid black
+  `;
+
   const NavBar = styled.ul`
     list-style-type: none;
     margin: 0;
@@ -40,21 +51,26 @@ function Header(props) {
 
   return (
     <React.Fragment>
-      <NavName>Adventure Book</NavName>
-      <NavBar>
-        <NavItem>
-          <Link to='/signin'>Sign In</Link>
-        </NavItem>
-        <NavItem>
-          <Link to='/contact'> Contact</Link>
-        </NavItem>
-        <NavItem>
-          <Link to='/link1' >Link1</Link>
-        </NavItem>
-        <NavItem>
-          <Link to='/#about'>About</Link>
-        </NavItem>
-      </NavBar>
+      <StyleHeader>
+
+        <NavName>Adventure Book</NavName>
+        <NavBar>
+          <NavItem>
+            <Link to='/signin'>Sign In</Link>
+          </NavItem>
+          <NavItem>
+            <Link to='/contact'> Contact</Link>
+          </NavItem>
+          <NavItem>
+            <Link to='/link1' >Link1</Link>
+          </NavItem>
+          <NavItem>
+            <Link to='/#about'>About</Link>
+          </NavItem>
+        </NavBar>
+
+      </StyleHeader>
+
     </React.Fragment>
   );
 }

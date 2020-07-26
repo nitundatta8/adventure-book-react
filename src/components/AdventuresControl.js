@@ -1,59 +1,54 @@
-import React from 'react';
-import { Image } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react';
+import { Image } from 'react-bootstrap';
+import { getAdventureData } from '../actions/AdventureImage'
 
-class AdventuresControl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
 
-    }
+const AdventuresControl = () => {
+  const [images, setImages] = useState([]);
+
+  const getImage = (data) => {
+    console.log(" data load ")
+    setImages(data);
+    console.log(images);
   }
-  render() {
-    return (
-      <React.Fragment>
-        <section class="gallery-block cards-gallery">
-          <div class="container">
-            <div class="heading">
-              <h2>Gallery</h2>
-            </div>
-            <div class="row">
-              <div class="col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                  <Image src="img/image3.jpg" thumbnail />
-                  <div class="card-body">
-                    <h6><a href="#">Lorem Ipsum</a></h6>
-                    <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                  <Image src="img/image4.jpg" thumbnail />
-                  <div class="card-body">
-                    <h6><a href="#">Lorem Ipsum</a></h6>
-                    <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                  <Image src="img/image5.jpg" thumbnail />
-                  <div class="card-body">
-                    <h6><a href="#">Lorem Ipsum</a></h6>
-                    <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
-                  </div>
-                </div>
-              </div>
+  const title = "image load";
+  useEffect(() => {
 
-            </div>
+    // Update the document title using the browser API
+
+    getAdventureData(getImage);
+  }, [title]);
+
+
+
+  return (
+    <React.Fragment>
+      {/* {places.map(place => place.name)} */}
+      <section class="gallery-block cards-gallery">
+        <div class="container">
+          <div class="heading">
+            <h2>Gallery</h2>
           </div>
-        </section>
+          <div class="row">
+            {images.map(image =>
+              <div class="col-md-6 col-lg-4">
+                <div class="card border-0 transform-on-hover">
+                  <Image src={image.imageUrl} thumbnail />
+                  <div class="card-body">
+                    <h6><a href="#">{image.location}</a></h6>
+                    <p class="text-muted card-text">{image.description}</p>
+                  </div>
+                </div>
+              </div>)
+            }
+          </div>
 
+        </div>
+      </section>)
 
+    </React.Fragment>
+  );
 
-      </React.Fragment>
-    );
-  };
 
 };
 

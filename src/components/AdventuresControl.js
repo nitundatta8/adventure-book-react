@@ -23,7 +23,7 @@ const AdventuresControl = () => {
 
   return (
     <React.Fragment>
-      {/* {places.map(place => place.name)} */}
+
       <section class="gallery-block cards-gallery">
         <div class="container">
           <div class="heading">

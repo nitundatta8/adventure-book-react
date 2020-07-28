@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Image } from 'react-bootstrap';
-import { getAdventureData } from '../actions/AdventureImage'
+import { getAdventureData } from '../actions/AdventureImage';
+import { Link } from 'react-router-dom';
 
 
 const AdventuresControl = () => {
@@ -33,7 +34,7 @@ const AdventuresControl = () => {
             {images.map(image =>
               <div class="col-md-6 col-lg-4">
                 <div class="card border-0 transform-on-hover">
-                  <Image src={image.imageUrl} thumbnail />
+                  <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail />
                   <div class="card-body">
                     <h6><a href="#">{image.location}</a></h6>
                     <p class="text-muted card-text">{image.description}</p>
@@ -44,8 +45,8 @@ const AdventuresControl = () => {
           </div>
 
         </div>
-      </section>)
-
+      </section>
+      <Link to={`/newAdventureForm`} > <h3>Share Your Adventure</h3> </Link>
     </React.Fragment>
   );
 

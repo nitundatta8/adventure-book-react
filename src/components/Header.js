@@ -3,79 +3,31 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Header(props) {
-  //not working
-  const StyleHeader = styled.section`
-    display: flex,
-    margin: 5px,
-    background-color: orange;
+  const styleHeader = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    margin: '5px',
+    backgroundColor: 'gray',
     fontSize: '30px',
-    color: ivory,
-    width: 100%,
-    border-Bottom: 5px solid black
-  `;
 
-
-
-  const NavBar = styled.ul`
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    width: 100%;
-  `;
-
-  const NavItem = styled.li`
-  float: right;
-  a {
-    display: block;
-    color: blue;
-    padding: 14px 16px;
-    text-align: center;
-    text-decoration: none;
+    width: '100%',
+    borderBottom: '5px solid black',
+    padding: '1rem'
+  }
+  const link = {
+    color: 'white'
   }
 
-  a:hover {
-    color: Black;
-    background-color: pink;
-  }
-`;
-
-  const NavName = styled.h1`
-  color: light green;
-  float: left;
-  position: fixed;
-  top: 0;
-  margin-left: 14px;
-`;
 
 
   return (
-    <React.Fragment>
-      <StyleHeader>
-
-        <NavName>Adventure Book</NavName>
-        <NavBar>
-          <NavItem>
-            <Link to='/signin'>Sign In</Link>
-          </NavItem>
-          <NavItem>
-            <Link to='/contact'> Contact</Link>
-          </NavItem>
-          <NavItem>
-            <Link to='/link1' >Link1</Link>
-          </NavItem>
-          <NavItem>
-            <Link to='/home'>Home</Link>
-          </NavItem>
-        </NavBar>
-
-      </StyleHeader>
-    </React.Fragment>
-
-
-
+    <div style={styleHeader}>
+      <h3>Adventure Book</h3>
+      <Link style={link} to="/signin"><h4>Sign In</h4></Link>
+      <Link style={link} to="/"><h4>Home</h4></Link>
+      <Link style={link} to="/newAdventureForm"><h4>Share Adventure</h4></Link>
+    </div>
   );
 }
 

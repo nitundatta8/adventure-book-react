@@ -1,15 +1,48 @@
 import React from 'react';
 import Header from './Header';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AdventureList from './AdventureList';
+
 import './App.css';
+import 'antd/dist/antd.css';
 import AdventuresControl from './AdventuresControl';
+import NewAdventureForm from './NewAdventureForm';
+import CampaignForm from './CampaignForm';
+import CampaignReport from './CampaignReport';
+import LoginForm from './LoginForm';
+import ProductTagging from './ProductTagging';
+
 
 function App() {
   return (
     <Router>
       <Header />
-      <AdventuresControl />
+      <div className='App'>
+        <Switch>
+
+          <Route path="/signin">
+            <LoginForm />
+          </Route>
+          <Route path="/newAdventureForm">
+            <NewAdventureForm />
+          </Route>
+          <Route path="/campaignForm">
+            <CampaignForm />
+          </Route>
+          <Route path="/report">
+            <CampaignReport />
+          </Route>
+          <Route path="/product/:imgId">
+            <ProductTagging />
+          </Route>
+
+          <Route path="/">
+            <AdventuresControl />
+          </Route>
+
+        </Switch>
+      </div>
+
+
     </Router>
   );
 }

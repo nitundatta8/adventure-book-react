@@ -8,7 +8,8 @@ import thunkMiddleware from 'redux-thunk';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import middlewareLogger from './middleware/middleware-logger';
-import rootReducer from './reducers/index'
+import rootReducer from './reducers/index';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 

@@ -120,6 +120,19 @@ export const postComment = (commentsData, comment, currentImgId, token) => {
     .catch((error) => {
       commentsData(error);
     });
+};
 
-
+export const getImageById = (imageData, imgId) => {
+  //http://localhost:5000/api/AdventureImage/36
+  return fetch(`http://localhost:5000/api/AdventureImage/${imgId}`)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        imageData(jsonifiedResponse);
+      })
+    .catch((error) => {
+      imageData(error);
+    });
 };

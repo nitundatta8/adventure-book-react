@@ -26,7 +26,7 @@ function LoginForm(props) {
     <React.Fragment>
       {loginStatus ? <Redirect to={url} /> : <h3></h3>}
 
-      {authenticationFail ? <h3>Login Fail {authenticationFail}</h3> : <h3></h3>}
+      {/* {authenticationFail ? <h3>Login Fail {authenticationFail}</h3> : <h3></h3>} */}
 
       <h1>Sign in</h1>
       <form onSubmit={doSignUp}>

@@ -1,26 +1,52 @@
-
-//import { Form } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { postAdventure } from './../actions/AdventureImage';
 import { Redirect } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Image } from 'react-bootstrap';
+import { Modal } from 'antd';
+
+
 const NewAdventureForm = () => {
   const loginStatus = useSelector(state => state.user.login);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
   const [imagePreviewSrc, setImagePreviewSrc] = useState("http://placehold.it/180");
+  const [visible, setVisible] = useState(false);
+  const [uploadImg, setUploadImg] = useState({});
+  const history = useHistory();
+
+  const showModal = () => {
+    setVisible(true);
+
+  };
+
+  const hideModal = () => {
+    setVisible(false);
+    history.push('/');
+  };
+
+  const okModal = () => {
+    setVisible(false);
+    history.push(`/product/${uploadImg.id}`);
+  }
 
 
   const dataAdventure = (data) => {
+    showModal();
     console.log(" dataAdventure ");
+    setUploadImg(data);
 
+  }
+  const sizeImage = {
+    height: '250px',
+    width: '250px'
   }
 
   const uploadAction = (event) => {
     event.preventDefault();
-    postAdventure(dataAdventure,
-      event.target)
-
+    postAdventure(dataAdventure, event.target);
+    event.target.reset();
+    setImagePreviewSrc("http://placehold.it/180");
   };
 
   const readURL = (e) => {
@@ -64,7 +90,7 @@ const NewAdventureForm = () => {
             <input type="file" name="ImgFile" onChange={readURL} />
           </div>
           <div class="form-group">
-            <Image id="previewImage" src={imagePreviewSrc} alt="preview image" />
+            <Image id="previewImage" src={imagePreviewSrc} alt="preview image" style={sizeImage} />
           </div>
 
 
@@ -72,26 +98,18 @@ const NewAdventureForm = () => {
 
         </form>
 
-        {/* <input
-          type='hidden'
-          name='UserId'
-          defaultValue='1' /><br /> */}
-
-        {/* <input
-          type='text'
-          name='location'
-          placeholder='Location' /><br />
-        <input
-          type='text'
-          name='description'
-          placeholder='Description' /><br />
-        <input type="file" name="ImgFile" onChange={readURL} /><br />
-        <Image id="previewImage" src={imagePreviewSrc} alt="preview image" />
-        <br /> */}
-
-
-
       </div>
+      <Modal
+        title="Modal"
+        visible={visible}
+        onOk={okModal}
+        onCancel={hideModal}
+        okText="Yes"
+        cancelText="No"
+      >
+        <h3>Do you want to Tag your product?</h3>
+
+      </Modal>
 
 
     </React.Fragment>

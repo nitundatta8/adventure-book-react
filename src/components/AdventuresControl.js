@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Image } from 'react-bootstrap';
-import { getAdventureData } from '../actions/AdventureImage';
+import { getAdventureData, getCommentById, postComment } from '../actions/AdventureImage';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Modal, Button } from 'antd';
+//import { getCommentById } from './../actions/AdventureImage'
 
 
 
 const AdventuresControl = () => {
+
+  const token = useSelector(state => state.user.userInfo.token);
   const [visible, setVisible] = useState(false)
   const loginStatus = useSelector(state => state.user.login);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
 
   const [images, setImages] = useState([]);
   const [currentImage, setCurrentImage] = useState({});
+  const [imageDetails, setImageDetails] = useState([]);
 
   const getImage = (data) => {
     console.log(" data load ")
@@ -23,25 +27,41 @@ const AdventuresControl = () => {
   }
   const title = "image load";
   useEffect(() => {
-
-    // Update the document title using the browser API
-
     getAdventureData(getImage);
   }, [title]);
 
+  //post comment
+  const commentsData = (data) => {
+    console.log(" post comment ok!!!");
+    getCommentById(commentData, currentImage.id, token);
+  }
 
+  const doComment = (event) => {
+    event.preventDefault();
+    postComment(commentsData, event.target.comment.value, currentImage.id, token);
+    event.target.comment.value = '';
+
+  }
+
+  //post comment -------
 
   ///*************************** */
 
   let state = { visible: false };
+  const commentData = (data) => {
+    console.log(" comment data");
+    setImageDetails(data);
+  }
+
 
   const showModal = e => {
     console.log("image id");
     console.log(e.target.id)
     setVisible(true);
-    images.map(image => {
+    images.forEach(image => {
       if (image.id == e.target.id) {
         console.log(" -- id --" + image.id)
+        getCommentById(commentData, image.id, token);
         setCurrentImage(image);
       }
     })
@@ -123,24 +143,20 @@ const AdventuresControl = () => {
             </div>
             <div class="col-md-4 col-lg-4"  >
               <h3>Comments</h3>
-
               <div class="col-md-12 col-lg-12"  >
-                <ul><li>
-                  asd
-                  </li>
-                  <li>
-                    asd
-                  </li>
-                  <li>
-                    asd
-                  </li>
+
+                <ul>{imageDetails.map(img => <li>{img.comments}</li>)}
                 </ul>
               </div>
               <div class="col-md-12 col-lg-12"  >
 
-                <textarea>sasdsad</textarea>
-                <br />
-                <button className="btn-primary" >asds</button>
+                <h5>Share your Comments</h5>
+                <form onSubmit={doComment.bind(this)}>
+                  <textarea
+                    name='comment'
+                    placeholder='Enter a comment' /><br />
+                  <button type='submit'>Comment</button>
+                </form>
               </div>
 
             </div>

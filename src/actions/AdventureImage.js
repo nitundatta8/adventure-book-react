@@ -79,3 +79,47 @@ export const getReport = (reportData) => {
       reportData(error);
     });
 };
+
+export const getCommentById = (commentData, imgid, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token }
+  };
+
+  //http://localhost:5000/api/Comments/getcomments/39
+  return fetch(`http://localhost:5000/api/Comments/getcomments/${imgid}`, requestOptions)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        commentData(jsonifiedResponse);
+      })
+    .catch((error) => {
+      commentData(error);
+    });
+};
+
+export const postComment = (commentsData, comment, currentImgId, token) => {
+
+
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token },
+    body: JSON.stringify({ "Comments": comment, "AdventureImageId": currentImgId })
+  };
+
+  //http://localhost:5000/api/Comments
+  return fetch(`http://localhost:5000/api/Comments`, requestOptions)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        commentsData(jsonifiedResponse);
+      })
+    .catch((error) => {
+      commentsData(error);
+    });
+
+
+};

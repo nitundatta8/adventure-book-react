@@ -5,17 +5,17 @@ import styled from 'styled-components';
 function Header(props) {
   const styleHeader = {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
     margin: '5px',
     backgroundColor: 'gray',
     fontSize: '30px',
-    color: 'black',
+
     width: '100%',
     borderBottom: '5px solid black',
     padding: '1rem'
   }
   const link = {
-
     color: 'white'
   }
 
@@ -24,9 +24,9 @@ function Header(props) {
   return (
     <div style={styleHeader}>
       <h3>Adventure Book</h3>
-      <Link style={link} to="/signin">Sign In</Link>
-      <Link style={link} to="/">Home</Link>
-      <Link style={link} to="/newAdventureForm">Share Adventure</Link>
+      <Link style={link} to="/signin"><h4>Sign In</h4></Link>
+      <Link style={link} to="/"><h4>Home</h4></Link>
+      <Link style={link} to="/newAdventureForm"><h4>Share Adventure</h4></Link>
     </div>
   );
 }

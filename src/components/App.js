@@ -9,6 +9,7 @@ import NewAdventureForm from './NewAdventureForm';
 import CampaignForm from './CampaignForm';
 import CampaignReport from './CampaignReport';
 import LoginForm from './LoginForm';
+import ProductTagging from './ProductTagging';
 
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/report">
             <CampaignReport />
+          </Route>
+          <Route path="/product/:imgId">
+            <ProductTagging />
           </Route>
 
           <Route path="/">

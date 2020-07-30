@@ -20,7 +20,7 @@ const AdventuresControl = () => {
   const [tagProducts, setTagProducts] = useState([]);
   const [images, setImages] = useState([]);
   const [currentImage, setCurrentImage] = useState({});
-  const [imageDetails, setImageDetails] = useState([]);
+  const [commentList, setCommentList] = useState([]);
 
   const getImage = (data) => {
     console.log(" data load ")
@@ -40,6 +40,7 @@ const AdventuresControl = () => {
 
   const doComment = (event) => {
     event.preventDefault();
+
     postComment(commentsData, event.target.comment.value, currentImage.id, token);
     event.target.comment.value = '';
 
@@ -52,7 +53,7 @@ const AdventuresControl = () => {
   let state = { visible: false };
   const commentData = (data) => {
     console.log(" comment data");
-    setImageDetails(data);
+    setCommentList(data);
   }
   const callbackImgTagById = (data) => {
     console.log(" callBack Img Tag By Id ")
@@ -149,6 +150,7 @@ const AdventuresControl = () => {
                       y={tag.yPos}
                       productName={tag.campaign.productName}
                       productUrl={tag.campaign.productUrl}
+                      category={tag.campaign.category}
                       id={tag.id} />
                   )
                 }
@@ -166,7 +168,7 @@ const AdventuresControl = () => {
               <h3>Comments</h3>
               <div class="col-md-12 col-lg-12"  >
 
-                <ul>{imageDetails?.map(img => <li>{img?.comments}</li>)}
+                <ul>{commentList?.map(comment => <li>{comment?.comments} ( {comment?.user?.firstName})</li>)}
                 </ul>
               </div>
               <div class="col-md-12 col-lg-12"  >

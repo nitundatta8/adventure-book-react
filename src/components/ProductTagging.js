@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { getImageById } from './../actions/AdventureImage';
+import { getImageById, loadImgTagById } from './../actions/AdventureImage';
 import { Image } from 'react-bootstrap';
 import ProductTag from './ProductTag';
 import NewProductTag from './NewProductTag'
@@ -10,22 +10,25 @@ const ProductTagging = () => {
   const { imgId } = useParams();
   console.log("id !!! Img " + imgId);
   const [imgData, setImgData] = useState({})
-  const [tagProducts, setTagProducts] = useState([{
-    x: 281,
-    y: 39,
-    productName: 'sunglass',
-    id: 1
-  }]);
+  const [tagProducts, setTagProducts] = useState([]);
+
+
+
 
   const [newProdTagVisibility, setNewProdTagVisibility] = useState("");
   const [posX, setPosX] = useState(0);
   const [posY, setPosY] = useState(0);
 
 
+  const callBackImgTagById = (data) => {
+    console.log(" callBack Img Tag By Id ")
+    setTagProducts(data);
+  }
 
   const newTagCreated = () => {
     console.log("call back save");
-    setNewProdTagVisibility("")
+    setNewProdTagVisibility("");
+    loadImgTagById(callBackImgTagById, imgId);
     //----callback
   }
 
@@ -88,9 +91,10 @@ const ProductTagging = () => {
             {
               tagProducts.map(tag =>
                 <ProductTag
-                  x={tag.x}
-                  y={tag.y}
-                  productName={tag.productName}
+                  x={tag.xPos}
+                  y={tag.yPos}
+                  productName={tag.campaign.productName}
+                  productName={tag.campaign.productUrl}
                   id={tag.id} />
               )
             }

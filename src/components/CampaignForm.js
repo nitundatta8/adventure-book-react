@@ -1,6 +1,7 @@
 import React from 'react';
 import { postCampaign } from './../actions/AdventureImage';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+
 
 
 const CampaignForm = () => {
@@ -42,7 +43,8 @@ const CampaignForm = () => {
           <option value="Sking">Sking</option>
           <option value="Biking">Biking</option>
           <option value="Swiming">Swiming</option>
-          <option value="Sport">Sport</option>
+          <option value="Camping">Camping</option>
+          <option value="Hiking">Hiking</option>
 
         </select><br />
         <input
@@ -68,7 +70,7 @@ const CampaignForm = () => {
         <button type='submit'>Submit</button>
       </form>
 
-
+      <Link to={`/report`} > <h3>Campaign Report</h3> </Link>
     </React.Fragment>
   );
 

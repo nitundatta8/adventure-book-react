@@ -172,3 +172,18 @@ export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
       productTagData(error);
     });
 };
+
+export const loadImgTagById = (callBackImgTagById, imgId) => {
+  return fetch(`http://localhost:5000/api/TagProduct/getTagProductById/${imgId}`)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        callBackImgTagById(jsonifiedResponse);
+      })
+    .catch((error) => {
+      callBackImgTagById(error);
+    });
+
+};

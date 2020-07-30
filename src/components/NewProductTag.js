@@ -83,9 +83,10 @@ const NewProductTag = (props) => {
             <select id="category" name="Category">
               <option value="" disabled selected hidden>Category</option>
               <option value="Sking">Sking</option>
-              <option value="Sport">Sport</option>
               <option value="Biking">Biking</option>
               <option value="Swiming">Swiming</option>
+              <option value="Camping">Camping</option>
+              <option value="Hiking">Hiking</option>
             </select><br />
 
             <select id="productName" name="ProductName" onClick={getProductName.bind(this)}>

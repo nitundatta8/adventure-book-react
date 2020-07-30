@@ -55,3 +55,27 @@
 	    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important; 
 	}
 }
+
+        .tag {
+            position: absolute;
+            background: #3E444E;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: 2px solid #FFFFFF;
+            visibility: hidden;
+            height: 22px;
+            width: 22px;
+            /*padding:11px; */
+            z-index: 2;
+        }
+        
+        .tag span {
+            position: absolute;
+            width: 20px;
+            color: #FFFFFF;
+            font-family: Helvetica, Arial, Sans-Serif;
+            font-size: .8rem;
+            text-align: center;
+            margin: 4px 0;
+        }

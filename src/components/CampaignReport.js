@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
-import { getReport } from './../actions/AdventureImage'
+import { getReport } from './../actions/AdventureImage';
+import { Link } from 'react-router-dom';
 
 
 const CampaignReport = () => {
@@ -53,6 +54,7 @@ const CampaignReport = () => {
         }
 
       </Table>
+      <Link to={`/`} > <h3>Back</h3> </Link>
     </React.Fragment>
   );
 };

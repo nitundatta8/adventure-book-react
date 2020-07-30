@@ -42,6 +42,7 @@ const CampaignForm = () => {
           <option value="Sking">Sking</option>
           <option value="Biking">Biking</option>
           <option value="Swiming">Swiming</option>
+          <option value="Sport">Sport</option>
 
         </select><br />
         <input

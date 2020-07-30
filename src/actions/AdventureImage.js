@@ -136,3 +136,39 @@ export const getImageById = (imageData, imgId) => {
       imageData(error);
     });
 };
+
+export const getProductNameApi = (productData, brand, category) => {
+  return fetch(`http://localhost:5000/api/Campaign/${brand}/${category}`)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        productData(jsonifiedResponse);
+      })
+    .catch((error) => {
+      productData(error);
+    });
+
+};
+
+export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' },
+    body: JSON.stringify({ "XPos": x, "YPos": y, "CampaignId": campaignID, "AdventureImageId": imageId })
+  };
+
+
+  return fetch(`http://localhost:5000/api/TagProduct`, requestOptions)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        productTagData(jsonifiedResponse);
+      })
+    .catch((error) => {
+      productTagData(error);
+    });
+};

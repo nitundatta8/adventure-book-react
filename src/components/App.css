@@ -37,7 +37,27 @@
   }
 }
 
-.sizediv{
-  height: 200px;
-  width: 200px
+
+.tag {
+  position: absolute;
+  background: #3E444E;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: 2px solid #FFFFFF;
+  visibility: hidden;
+  height: 22px;
+  width: 22px;
+  /*padding:11px; */
+  z-index: 2;
+}
+
+.tag span {
+  position: absolute;
+  width: 20px;
+  color: #FFFFFF;
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-size: .8rem;
+  text-align: center;
+  margin: 4px 0;
 }

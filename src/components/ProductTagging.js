@@ -43,7 +43,7 @@ const ProductTagging = () => {
 
   //---- array -----//
 
-  const imageData = (data) => {
+  const callbackImageData = (data) => {
     console.log("Api image data");
     setImgData(data);
   }
@@ -51,7 +51,7 @@ const ProductTagging = () => {
   const title = "image load";
   useEffect(() => {
     console.log(" --  image load --");
-    getImageById(imageData, imgId);
+    getImageById(callbackImageData, imgId);
   }, [title]);
 
   const sizeImage = {
@@ -94,7 +94,7 @@ const ProductTagging = () => {
                   x={tag.xPos}
                   y={tag.yPos}
                   productName={tag.campaign.productName}
-                  productName={tag.campaign.productUrl}
+                  productUrl={tag.campaign.productUrl}
                   id={tag.id} />
               )
             }

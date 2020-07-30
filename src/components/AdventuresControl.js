@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Image } from 'react-bootstrap';
-import { getAdventureData, getCommentById, postComment } from '../actions/AdventureImage';
+import { getAdventureData, getCommentById, loadImgTagById, postComment } from '../actions/AdventureImage';
+
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Modal, Button } from 'antd';
+import ProductTag from './ProductTag';
 //import { getCommentById } from './../actions/AdventureImage'
 
 
@@ -15,7 +17,7 @@ const AdventuresControl = () => {
   const [visible, setVisible] = useState(false)
   const loginStatus = useSelector(state => state.user.login);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
-
+  const [tagProducts, setTagProducts] = useState([]);
   const [images, setImages] = useState([]);
   const [currentImage, setCurrentImage] = useState({});
   const [imageDetails, setImageDetails] = useState([]);
@@ -52,7 +54,10 @@ const AdventuresControl = () => {
     console.log(" comment data");
     setImageDetails(data);
   }
-
+  const callbackImgTagById = (data) => {
+    console.log(" callBack Img Tag By Id ")
+    setTagProducts(data);
+  }
 
   const showModal = e => {
     console.log("image id");
@@ -63,6 +68,7 @@ const AdventuresControl = () => {
         console.log(" -- id --" + image.id)
         getCommentById(commentData, image.id, token);
         setCurrentImage(image);
+        loadImgTagById(callbackImgTagById, image.id);
       }
     })
   };
@@ -133,7 +139,22 @@ const AdventuresControl = () => {
           </div>
           <div class="row">
             <div class="col-md-8 col-lg-8"  >
-              <div class="card border-0 transform-on-hover">
+              <div class="card border-0 transform-on-hover" id="container">
+                {/* Adding tag to image */}
+
+                {
+                  tagProducts.map(tag =>
+                    <ProductTag
+                      x={tag.xPos}
+                      y={tag.yPos}
+                      productName={tag.campaign.productName}
+                      productUrl={tag.campaign.productUrl}
+                      id={tag.id} />
+                  )
+                }
+                {/*end */}
+
+
                 <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + currentImage.imageUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
                 <div class="card-body">
                   <h6><a href="#">{currentImage.location}</a></h6>

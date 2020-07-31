@@ -14,6 +14,9 @@ _July 17, 2020_
 ### Website Template
 ![Diagram](./public/img/AdventureBookSite.png)
 
+## Demo Video
+  * https://www.youtube.com/watch?v=HrF3ozj_MVw
+
 ## Setup/Installation Requirements
 
 * Clone this repository from GitHub.
@@ -45,6 +48,11 @@ _July 17, 2020_
   * JSX
   * Html
   * CSS
+  
+  ## Future Plan
+    * Add some image filtering similar to Instagram.
+    * Integrate affiliate partner API like “Avantlink” for affiliate advertisement.
+
 
 ### License
 ### This software is licensed under the MIT license.

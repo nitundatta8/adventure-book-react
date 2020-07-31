@@ -27,11 +27,6 @@ const NewProductTag = (props) => {
     visibility: visibility
   }
   console.log("tagStyleVal")
-  console.log(tagStyleVal)
-
-
-
-
 
   const productData = (data) => {
     console.log(" product api call");

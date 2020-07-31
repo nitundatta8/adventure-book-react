@@ -10,6 +10,7 @@ import CampaignForm from './CampaignForm';
 import CampaignReport from './CampaignReport';
 import LoginForm from './LoginForm';
 import ProductTagging from './ProductTagging';
+import ClickCommissionReport from './ClickCommissionReport';
 
 
 function App() {
@@ -34,7 +35,9 @@ function App() {
           <Route path="/product/:imgId">
             <ProductTagging />
           </Route>
-
+          <Route path="/commissionreport">
+            <ClickCommissionReport />
+          </Route>
           <Route path="/">
             <AdventuresControl />
           </Route>

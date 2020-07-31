@@ -15,13 +15,16 @@ export const getAdventureData = (getImage) => {
     });
 };
 
-export const postAdventure = (dataAdventure, oFormElement) => {
+export const postAdventure = (dataAdventure, oFormElement, token) => {
   const formData = new FormData(oFormElement);
 
   const requestOptions = {
     method: 'POST',
+    headers: { 'Authorization': 'bearer ' + token },
     body: formData
   };
+
+  console.log(requestOptions);
 
 
   return fetch(`http://localhost:5000/api/AdventureImage`, requestOptions)
@@ -186,4 +189,39 @@ export const loadImgTagById = (callBackImgTagById, imgId) => {
       callBackImgTagById(error);
     });
 
+};
+
+export const postClickCommision = (callbackClickCommision, campaignId, adventureImageId) => {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' },
+    body: JSON.stringify({ "CampaignId": campaignId, "AdventureImageId": adventureImageId })
+  };
+
+
+  return fetch(`http://localhost:5000/api/ClickCommision`, requestOptions)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        callbackClickCommision(jsonifiedResponse);
+      })
+    .catch((error) => {
+      callbackClickCommision(error);
+    });
+};
+
+export const getClickCommissionReport = (callbackClickCommissionReport) => {
+  return fetch(`http://localhost:5000/api/ClickCommision`)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        callbackClickCommissionReport(jsonifiedResponse);
+      })
+    .catch((error) => {
+      callbackClickCommissionReport(error);
+    });
 };

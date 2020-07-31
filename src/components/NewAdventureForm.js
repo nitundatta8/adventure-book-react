@@ -9,6 +9,7 @@ import { Modal } from 'antd';
 
 const NewAdventureForm = () => {
   const loginStatus = useSelector(state => state.user.login);
+  const token = useSelector(state => state.user.userInfo.token);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
   const [imagePreviewSrc, setImagePreviewSrc] = useState("http://placehold.it/180");
   const [visible, setVisible] = useState(false);
@@ -44,7 +45,7 @@ const NewAdventureForm = () => {
 
   const uploadAction = (event) => {
     event.preventDefault();
-    postAdventure(dataAdventure, event.target);
+    postAdventure(dataAdventure, event.target, token);
     event.target.reset();
     setImagePreviewSrc("http://placehold.it/180");
   };
@@ -83,9 +84,7 @@ const NewAdventureForm = () => {
             <label for="text"><h5>Description:</h5></label><br />
             <input type="text" class=" form-control-sm" id="location" name="description" />
           </div>
-          <div class="form-group">
-            <input type='hidden' name='UserId' defaultValue='1' />
-          </div>
+
           <div class="form-group">
             <input type="file" name="ImgFile" onChange={readURL} />
           </div>

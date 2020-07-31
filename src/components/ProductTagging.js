@@ -3,7 +3,8 @@ import { useParams } from 'react-router';
 import { getImageById, loadImgTagById } from './../actions/AdventureImage';
 import { Image } from 'react-bootstrap';
 import ProductTag from './ProductTag';
-import NewProductTag from './NewProductTag'
+import NewProductTag from './NewProductTag';
+import { Link } from 'react-router-dom';
 
 
 const ProductTagging = () => {
@@ -107,7 +108,7 @@ const ProductTagging = () => {
 
         </div>
       </section>
-
+      <Link to={`/`} > <h3>Back</h3> </Link>
     </>
   )
 };

@@ -1,8 +1,9 @@
 import React from 'react';
+import { postClickCommision } from './../actions/AdventureImage';
 
 
 const ProductTag = (props) => {
-  const { productUrl, category } = props;
+  const { productUrl, campaignId, adventureImageId } = props;
 
   const tagStyle = {
     left: (props.x - 13).toString() + 'px',
@@ -13,9 +14,14 @@ const ProductTag = (props) => {
     color: 'white'
   };
 
+  const callbackClickCommision = () => {
+    console.log("callback ClickCommision");
+  };
+
   const getCommision = (event) => {
     event.preventDefault();
     console.log(" get commition");
+    postClickCommision(callbackClickCommision, campaignId, adventureImageId);
     window.open(productUrl, "_blank");
   };
   const cursorStyle = {
@@ -28,7 +34,7 @@ const ProductTag = (props) => {
 
       <div id={"tagged" + props.id} className="tag" style={tagStyle} >
         {/* <span id="span-id"><a href={productUrl} target="_blank" style={productLinkCss}>{props.productName}</a></span> */}
-        <span ><a href="#" style={cursorStyle} onClick={getCommision} data-placement="top" title={props.productName}>{props.category}</a></span>
+        <span ><a href="#" style={cursorStyle} onClick={getCommision.bind(this)} data-placement="top" title={props.productName}>{props.category}</a></span>
       </div>
     </>
 

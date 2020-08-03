@@ -24,12 +24,14 @@ _July 17, 2020_
 * In the project directory, run the 'npm install' command.
 * run 'npm start'
 
+### Backend Restful Services follow the GitHub repo
+https://github.com/nitundatta8/capstone-adventurebook.git
+
 ## Specification
   * Users can post pictures and tag items on the picture.
   * Advertisers can post add to the website.
   * Show earning reports to the user.
   * Show traffic flow reports to advertisers.
-
 
 ### Known Bugs
 

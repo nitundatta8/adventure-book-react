@@ -225,3 +225,17 @@ export const getClickCommissionReport = (callbackClickCommissionReport) => {
       callbackClickCommissionReport(error);
     });
 };
+
+export const searchPlaceByNameOrDes = (callbackPlaceByNameOrDes, place) => {
+  return fetch(`http://localhost:5000/api/AdventureImage/places/${place}`)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        callbackPlaceByNameOrDes(jsonifiedResponse);
+      })
+    .catch((error) => {
+      callbackPlaceByNameOrDes(error);
+    });
+};

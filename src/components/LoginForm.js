@@ -7,7 +7,7 @@ import { useParams, useLocation } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
 
-function LoginForm(props) {
+function LoginForm() {
   //const { redirectTo } = useParams();
   const location = useLocation();
   let url = location.pathname.substring(7);

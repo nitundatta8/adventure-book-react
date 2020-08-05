@@ -13,6 +13,7 @@ import ProductTagging from './ProductTagging';
 import ClickCommissionReport from './ClickCommissionReport';
 
 
+
 function App() {
   return (
     <Router>
@@ -38,6 +39,7 @@ function App() {
           <Route path="/commissionreport">
             <ClickCommissionReport />
           </Route>
+
           <Route path="/">
             <AdventuresControl />
           </Route>

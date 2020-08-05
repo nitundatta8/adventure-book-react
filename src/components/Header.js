@@ -1,50 +1,76 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-function Header(props) {
-  const styleHeader = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    margin: '5px',
-    backgroundColor: 'gray',
-    fontSize: '30px',
+import React, { useState } from 'react';
+import { searchPlaceByNameOrDes } from './../actions/AdventureImage';
+import { Navbar, Nav, Container, Form, FormControl, Image, Button } from 'react-bootstrap';
+import { useHistory, Redirect } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import * as c from '../actions/ActionsType';
 
-    width: '100%',
-    borderBottom: '5px solid black',
-    padding: '1rem'
-  }
-  const link = {
-    color: 'white'
-  }
+function Header() {
+  const dispatch = useDispatch();
+  const callbackPlaceByNameOrDes = (data) => {
+    console.log("callback  PlaceByNameOrDes");
 
+    const action = {
+      type: c.ADD_ADVENTURE,
+      data
+    }
+    dispatch(action)
 
+  };
+
+  const handleSearch = (event) => {
+    console.log(" handleSearch ")
+    event.preventDefault();
+    searchPlaceByNameOrDes(callbackPlaceByNameOrDes, event.target.place.value);
+  };
 
   return (
-    <Container>
-      <div >
-        {/* <h3>Adventure Book</h3>
-      <Link style={link} to="/signin"><h4>Sign In</h4></Link>
-      <Link style={link} to="/"><h4>Home</h4></Link>
-      <Link style={link} to="/newAdventureForm"><h4>Share Adventure</h4></Link> */}
+    <>
+      <Container>
+        <div >
+          <Navbar bg="light" expand="lg" className="bg-light justify-content-lg-center">
+            <Navbar.Brand href="/">Adventure Book</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto">
+                <Nav.Link href="/signin">Sign In</Nav.Link>
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/newAdventureForm">Share Adventure</Nav.Link>
 
-        <Navbar bg="light" expand="lg" className="bg-light justify-content-lg-center">
-          <Navbar.Brand href="/">Adventure Book</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="/signin">Sign In</Nav.Link>
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/newAdventureForm">Share Adventure</Nav.Link>
+              </Nav>
+              <Form inline onSubmit={handleSearch.bind(this)}>
+                <FormControl type="text" name="place" placeholder="Search" className="mr-sm-2" />
+                <Button type="submit" variant="outline-success">Search</Button>
+              </Form>
 
-            </Nav>
+            </Navbar.Collapse>
+          </Navbar>
 
-          </Navbar.Collapse>
-        </Navbar>
+        </div >
+      </Container>
+      {/* {visible ? <section class="gallery-block cards-gallery">
+        <div class="container">
+          <div class="heading">
+            <h2>Gallery</h2>
+          </div>
+          <div class="row">
 
-      </div >
-    </Container>
+            {images?.map(image =>
+              <div class="col-md-6 col-lg-4">
+                <div class="card border-0 transform-on-hover">
+                  <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail />
+                  <div class="card-body">
+                    <h6><a href="#">{image.location}</a></h6>
+                    <p class="text-muted card-text">{image.description}</p>
+                  </div>
+                </div>
+              </div>)
+            }
+          </div>
+        </div>
+      </section> : ''} */}
+
+    </>
   );
 }
 

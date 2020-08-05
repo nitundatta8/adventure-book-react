@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Image } from 'react-bootstrap';
 import { getAdventureData, getCommentById, loadImgTagById, postComment } from '../actions/AdventureImage';
-
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
 import ProductTag from './ProductTag';
-//import { getCommentById } from './../actions/AdventureImage'
+import * as c from '../actions/ActionsType';
+import { useParams, useLocation } from 'react-router';
+// import { getCommentById } from './../actions/AdventureImage'
 
 
 
 const AdventuresControl = () => {
-
+  const dispatch = useDispatch();
   const token = useSelector(state => state.user.userInfo.token);
   const [visible, setVisible] = useState(false)
   const loginStatus = useSelector(state => state.user.login);
@@ -21,15 +21,23 @@ const AdventuresControl = () => {
   const [images, setImages] = useState([]);
   const [currentImage, setCurrentImage] = useState({});
   const [commentList, setCommentList] = useState([]);
+  const adventureList = useSelector(state => state.adventure.advrntureInfo)
+
 
   const getImage = (data) => {
     console.log(" data load ")
-    setImages(data);
-    console.log(images);
+
+    const action = {
+      type: c.ADD_ADVENTURE,
+      data
+    }
+    dispatch(action)
+
   }
   const title = "image load";
   useEffect(() => {
     getAdventureData(getImage);
+
   }, [title]);
 
   //post comment
@@ -64,7 +72,7 @@ const AdventuresControl = () => {
     console.log("image id");
     console.log(e.target.id)
     setVisible(true);
-    images.forEach(image => {
+    adventureList.forEach(image => {
       if (image.id == e.target.id) {
         console.log(" -- id --" + image.id)
         getCommentById(commentData, image.id, token);
@@ -104,7 +112,7 @@ const AdventuresControl = () => {
           </div>
           <div class="row">
 
-            {images?.map(image =>
+            {adventureList?.map(image =>
               <div class="col-md-6 col-lg-4">
                 <div class="card border-0 transform-on-hover">
                   <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail onClick={showModal} id={image.id} />

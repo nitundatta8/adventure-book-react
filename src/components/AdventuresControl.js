@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
 import ProductTag from './ProductTag';
 import * as c from '../actions/ActionsType';
-import { useParams, useLocation } from 'react-router';
-// import { getCommentById } from './../actions/AdventureImage'
+//import { useParams, useLocation } from 'react-router';
+
 
 
 
@@ -24,7 +24,7 @@ const AdventuresControl = () => {
   const adventureList = useSelector(state => state.adventure.advrntureInfo)
 
 
-  const getImage = (data) => {
+  const callbackAdventureImage = (data) => {
     console.log(" data load ")
 
     const action = {
@@ -35,8 +35,9 @@ const AdventuresControl = () => {
 
   }
   const title = "image load";
+  const places = " ";
   useEffect(() => {
-    getAdventureData(getImage);
+    getAdventureData(callbackAdventureImage, places);
 
   }, [title]);
 

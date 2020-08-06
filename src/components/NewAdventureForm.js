@@ -9,6 +9,9 @@ import { Modal } from 'antd';
 
 const NewAdventureForm = () => {
   const loginStatus = useSelector(state => state.user.login);
+  console.log(" loginStatus " + loginStatus);
+  const user = useSelector(state => state.user);
+  console.log(user);
   const token = useSelector(state => state.user.userInfo.token);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
   const [imagePreviewSrc, setImagePreviewSrc] = useState("http://placehold.it/180");

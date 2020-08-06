@@ -1,19 +1,19 @@
 
 
-export const getAdventureData = (getImage) => {
+// export const getAdventureData = (callbackAdventureImage) => {
 
-  return fetch(`http://localhost:5000/api/AdventureImage`)
-    .then(response => response.json())
-    .then(
-      (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
-        console.log(jsonifiedResponse);
-        getImage(jsonifiedResponse);
-      })
-    .catch((error) => {
-      getImage(error);
-    });
-};
+//   return fetch(`http://localhost:5000/api/AdventureImage`)
+//     .then(response => response.json())
+//     .then(
+//       (jsonifiedResponse) => {
+//         console.log("jsonifiedResponse  ");
+//         console.log(jsonifiedResponse);
+//         callbackAdventureImage(jsonifiedResponse);
+//       })
+//     .catch((error) => {
+//       callbackAdventureImage(error);
+//     });
+// };
 
 export const postAdventure = (dataAdventure, oFormElement, token) => {
   const formData = new FormData(oFormElement);
@@ -226,8 +226,8 @@ export const getClickCommissionReport = (callbackClickCommissionReport) => {
     });
 };
 
-export const searchPlaceByNameOrDes = (callbackPlaceByNameOrDes, place) => {
-  return fetch(`http://localhost:5000/api/AdventureImage/places/${place}`)
+export const getAdventureData = (callbackPlaceByNameOrDes, place) => {
+  return fetch(`http://localhost:5000/api/AdventureImage/places/${place}/`)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {

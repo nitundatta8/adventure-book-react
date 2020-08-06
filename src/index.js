@@ -10,12 +10,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import middlewareLogger from './middleware/middleware-logger';
 import rootReducer from './reducers/index';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = createStore(rootReducer, applyMiddleware(middlewareLogger, thunkMiddleware));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+
   </Provider>,
   document.getElementById('root')
 );

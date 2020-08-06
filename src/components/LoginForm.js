@@ -9,13 +9,13 @@ import { Redirect } from 'react-router-dom';
 
 function LoginForm() {
   //const { redirectTo } = useParams();
-  const location = useLocation();
-  let url = location.pathname.substring(7);
-  if (url === "") {
-    url = '/';
-  }
-  console.log(" url ");
-  console.log(url);
+  // const location = useLocation();
+  // let url = location.pathname.substring(7);
+  // if (url === "") {
+  //   url = '/';
+  // }
+  // console.log(" url ");
+  // console.log(url);
 
   const dispatch = useDispatch();
   //const history = useHistory();
@@ -24,7 +24,7 @@ function LoginForm() {
   return (
 
     <React.Fragment>
-      {loginStatus ? <Redirect to={url} /> : <h3></h3>}
+      {loginStatus ? <Redirect to={`/`} /> : <h3></h3>}
 
       {authenticationFail ? <h3>Login Fail {authenticationFail}</h3> : <h3></h3>}
 

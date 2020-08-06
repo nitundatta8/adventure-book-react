@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { searchPlaceByNameOrDes } from './../actions/AdventureImage';
-import { Navbar, Nav, Container, Form, FormControl, Image, Button } from 'react-bootstrap';
+import { getAdventureData } from './../actions/AdventureImage';
+import { Navbar, Nav, Container, Form, FormControl, NavDropdown, Button } from 'react-bootstrap';
 import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as c from '../actions/ActionsType';
 
 function Header() {
@@ -21,7 +22,10 @@ function Header() {
   const handleSearch = (event) => {
     console.log(" handleSearch ")
     event.preventDefault();
-    searchPlaceByNameOrDes(callbackPlaceByNameOrDes, event.target.place.value);
+    if (event.target.place.value.trim() != "") {
+      getAdventureData(callbackPlaceByNameOrDes, event.target.place.value);
+    }
+
   };
 
   return (
@@ -35,7 +39,19 @@ function Header() {
               <Nav className="mr-auto">
                 <Nav.Link href="/signin">Sign In</Nav.Link>
                 <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/newAdventureForm">Share Adventure</Nav.Link>
+                {/* as={Link} to="/" */}
+                {<Nav.Link as={Link} to="/newAdventureForm">Share Adventure</Nav.Link>}
+                <NavDropdown title="Campaign" id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/CampaignForm">Add Campaign</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item as={Link} to="/report">Campaign Report</NavDropdown.Item>
+                </NavDropdown>
+                <NavDropdown title="Reports" id="basic-nav-dropdown">
+                  <NavDropdown.Item as={Link} to="/commissionreport">Commission Report</NavDropdown.Item>
+
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item as={Link} to="#action/3.4">Separated link</NavDropdown.Item>
+                </NavDropdown>
 
               </Nav>
               <Form inline onSubmit={handleSearch.bind(this)}>
@@ -48,27 +64,6 @@ function Header() {
 
         </div >
       </Container>
-      {/* {visible ? <section class="gallery-block cards-gallery">
-        <div class="container">
-          <div class="heading">
-            <h2>Gallery</h2>
-          </div>
-          <div class="row">
-
-            {images?.map(image =>
-              <div class="col-md-6 col-lg-4">
-                <div class="card border-0 transform-on-hover">
-                  <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail />
-                  <div class="card-body">
-                    <h6><a href="#">{image.location}</a></h6>
-                    <p class="text-muted card-text">{image.description}</p>
-                  </div>
-                </div>
-              </div>)
-            }
-          </div>
-        </div>
-      </section> : ''} */}
 
     </>
   );

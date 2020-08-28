@@ -18,6 +18,8 @@ export default (state = initialState, action) => {
         isLoading: true
       });
     case c.GET_LOGIN_SUCCESS:
+
+      window.localStorage.setItem('user', JSON.stringify(action.userInfo));
       return Object.assign({}, state, {
         isLoading: false,
         login: true,

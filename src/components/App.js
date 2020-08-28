@@ -34,6 +34,10 @@ function App() {
           <Route path="/report">
             <CampaignReport />
           </Route>
+
+          {/* <Route path="/product/:imgId">
+            <ProductTag />
+          </Route> */}
           <Route path="/product/:imgId">
             <ProductTagging />
           </Route>

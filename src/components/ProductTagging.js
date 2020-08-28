@@ -14,8 +14,6 @@ const ProductTagging = () => {
   const [tagProducts, setTagProducts] = useState([]);
 
 
-
-
   const [newProdTagVisibility, setNewProdTagVisibility] = useState("");
   const [posX, setPosX] = useState(0);
   const [posY, setPosY] = useState(0);

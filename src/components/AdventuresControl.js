@@ -12,10 +12,12 @@ import * as c from '../actions/ActionsType';
 
 
 const AdventuresControl = () => {
+
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const dispatch = useDispatch();
-  const token = useSelector(state => state.user.userInfo.token);
+  // const token = useSelector(state => state.user.userInfo.token);
   const [visible, setVisible] = useState(false)
-  const loginStatus = useSelector(state => state.user.login);
+  // const loginStatus = useSelector(state => state.user.login);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
   const [tagProducts, setTagProducts] = useState([]);
   const [images, setImages] = useState([]);
@@ -44,13 +46,13 @@ const AdventuresControl = () => {
   //post comment
   const commentsData = (data) => {
     console.log(" post comment ok!!!");
-    getCommentById(commentData, currentImage.id, token);
+    getCommentById(commentData, currentImage.id, loginStatus.token);
   }
 
   const doComment = (event) => {
     event.preventDefault();
 
-    postComment(commentsData, event.target.comment.value, currentImage.id, token);
+    postComment(commentsData, event.target.comment.value, currentImage.id, loginStatus.token);
     event.target.comment.value = '';
 
   }
@@ -62,7 +64,10 @@ const AdventuresControl = () => {
   let state = { visible: false };
   const commentData = (data) => {
     console.log(" comment data");
-    setCommentList(data);
+    if (loginStatus) {
+      setCommentList(data);
+    }
+
   }
   const callbackImgTagById = (data) => {
     console.log(" callBack Img Tag By Id ")
@@ -70,17 +75,18 @@ const AdventuresControl = () => {
   }
 
   const showModal = e => {
-    console.log("image id");
-    console.log(e.target.id)
-    setVisible(true);
-    adventureList.forEach(image => {
-      if (image.id == e.target.id) {
-        console.log(" -- id --" + image.id)
-        getCommentById(commentData, image.id, token);
-        setCurrentImage(image);
-        loadImgTagById(callbackImgTagById, image.id);
-      }
-    })
+    if (loginStatus) {
+      setVisible(true);
+      adventureList.forEach(image => {
+        if (image.id == e.target.id) {
+          console.log(" -- id --" + image.id)
+          getCommentById(commentData, image.id, loginStatus.token);
+          setCurrentImage(image);
+          loadImgTagById(callbackImgTagById, image.id);
+        }
+      })
+    }
+
   };
 
   const handleOk = e => {

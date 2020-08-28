@@ -59,20 +59,21 @@
         .tag {
             position: absolute;
             background: #3E444E;
-            -webkit-border-radius: 20px;
-            -moz-border-radius: 20px;
-            border-radius: 20px;
+            -webkit-border-radius: 40px;
+            -moz-border-radius: 40px;
+            border-radius: 100px;
             border: 2px solid #FFFFFF;
             visibility: hidden;
-            height: 22px;
-            width: 22px;
+            height: 40px;
+            width: 40px;
             /*padding:11px; */
             z-index: 2;
         }
         
         .tag span {
             position: absolute;
-            width: 20px;
+            width: 50px;
+            height: 50px;
             color: #FFFFFF;
             font-family: Helvetica, Arial, Sans-Serif;
             font-size: .8rem;

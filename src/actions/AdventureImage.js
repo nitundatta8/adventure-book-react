@@ -177,6 +177,7 @@ export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
 };
 
 export const loadImgTagById = (callBackImgTagById, imgId) => {
+  console.log(" img id api")
   return fetch(`http://localhost:5000/api/TagProduct/getTagProductById/${imgId}`)
     .then(response => response.json())
     .then(

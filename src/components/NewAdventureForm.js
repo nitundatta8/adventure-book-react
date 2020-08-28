@@ -8,11 +8,13 @@ import { Modal } from 'antd';
 
 
 const NewAdventureForm = () => {
-  const loginStatus = useSelector(state => state.user.login);
+
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
+  // const loginStatus = useSelector(state => state.user.login);// using from redux store
   console.log(" loginStatus " + loginStatus);
   const user = useSelector(state => state.user);
   console.log(user);
-  const token = useSelector(state => state.user.userInfo.token);
+  // const token = useSelector(state => state.user.userInfo.token);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
   const [imagePreviewSrc, setImagePreviewSrc] = useState("http://placehold.it/180");
   const [visible, setVisible] = useState(false);
@@ -48,7 +50,7 @@ const NewAdventureForm = () => {
 
   const uploadAction = (event) => {
     event.preventDefault();
-    postAdventure(dataAdventure, event.target, token);
+    postAdventure(dataAdventure, event.target, loginStatus.token);
     event.target.reset();
     setImagePreviewSrc("http://placehold.it/180");
   };

@@ -39,7 +39,8 @@ const AdventuresControl = () => {
   const title = "image load";
   const places = " ";
   useEffect(() => {
-    getAdventureData(callbackAdventureImage, places);
+    // getAdventureData(callbackAdventureImage, places);
+    getAdventureData(callbackAdventureImage);
 
   }, [title]);
 
@@ -118,7 +119,6 @@ const AdventuresControl = () => {
             <h2>Gallery</h2>
           </div>
           <div class="row">
-
             {adventureList?.map(image =>
               <div class="col-md-6 col-lg-4">
                 <div class="card border-0 transform-on-hover">

@@ -31,17 +31,23 @@ const ClickCommissionReport = () => {
   const callbackClickCommissionReport = (data) => {
     console.log(" Data report");
     console.log(data);
+    console.log(data[0]);
+
     setClickCommissionReport(data);
+    console.log(" Data88888   ");
+    console.log(typeof clickCommissionReport);
     let myMap = new Map();
-    data.foreach(r => {
+    data.forEach((r) => {
       const dateKey = r.clickDate.split("T")[0];
+      console.log("dateKeyt: " + dateKey);
       let val = myMap.get(dateKey) ? 0 : myMap.get(dateKey);
       myMap.set(dateKey, val + r.campaign.commission);
+      console.log(" myMap 1111111111111111:  " + myMap);
     });
 
     console.log(myMap);
 
-    console.log(clickCommissionReport)
+    console.log("checkommissionReport:   " + clickCommissionReport)
 
   }
 

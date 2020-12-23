@@ -1,19 +1,19 @@
 
 
-// export const getAdventureData = (callbackAdventureImage) => {
+export const getAdventureData = (callbackAdventureImage) => {
 
-//   return fetch(`http://localhost:5000/api/AdventureImage`)
-//     .then(response => response.json())
-//     .then(
-//       (jsonifiedResponse) => {
-//         console.log("jsonifiedResponse  ");
-//         console.log(jsonifiedResponse);
-//         callbackAdventureImage(jsonifiedResponse);
-//       })
-//     .catch((error) => {
-//       callbackAdventureImage(error);
-//     });
-// };
+  return fetch(`http://localhost:5000/api/AdventureImage`)
+    .then(response => response.json())
+    .then(
+      (jsonifiedResponse) => {
+        console.log("jsonifiedResponse  ");
+        console.log(jsonifiedResponse);
+        callbackAdventureImage(jsonifiedResponse);
+      })
+    .catch((error) => {
+      callbackAdventureImage(error);
+    });
+};
 
 export const postAdventure = (dataAdventure, oFormElement, token) => {
   const formData = new FormData(oFormElement);
@@ -219,7 +219,7 @@ export const getClickCommissionReport = (callbackClickCommissionReport) => {
     .then(
       (jsonifiedResponse) => {
         console.log("jsonifiedResponse  ");
-        console.log(jsonifiedResponse);
+        console.log(typeof jsonifiedResponse);
         callbackClickCommissionReport(jsonifiedResponse);
       })
     .catch((error) => {
@@ -227,16 +227,16 @@ export const getClickCommissionReport = (callbackClickCommissionReport) => {
     });
 };
 
-export const getAdventureData = (callbackPlaceByNameOrDes, place) => {
-  return fetch(`http://localhost:5000/api/AdventureImage/places/${place}/`)
-    .then(response => response.json())
-    .then(
-      (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
-        console.log(jsonifiedResponse);
-        callbackPlaceByNameOrDes(jsonifiedResponse);
-      })
-    .catch((error) => {
-      callbackPlaceByNameOrDes(error);
-    });
-};
+// export const getAdventureData = (callbackPlaceByNameOrDes, place) => {
+//   return fetch(`http://localhost:5000/api/AdventureImage/places/${place}/`)
+//     .then(response => response.json())
+//     .then(
+//       (jsonifiedResponse) => {
+//         console.log("jsonifiedResponse  ");
+//         console.log(jsonifiedResponse);
+//         callbackPlaceByNameOrDes(jsonifiedResponse);
+//       })
+//     .catch((error) => {
+//       callbackPlaceByNameOrDes(error);
+//     });
+// };

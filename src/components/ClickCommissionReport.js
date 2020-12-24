@@ -8,48 +8,62 @@ import { Bar } from 'react-chartjs-2';
 
 
 const ClickCommissionReport = () => {
-
+  const [clickCommissionReport, setClickCommissionReport] = useState([]);
+  const [mapCommission, setMapCommission] = useState([]);
+  let myMap = new Map();
+  console.log("myMap  ");
+  for (let mapVal of myMap.values()) {
+    setMapCommission(mapVal);
+  }
+  console.log(myMap);
   // bar graph
   const state = {
-    labels: ['January', 'February', 'March',
-      'April', 'May'],
+    labels: ['Jan', 'Feb', 'Mar',
+      'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
       {
-        label: 'Rainfall',
+        label: 'Commission',
         backgroundColor: 'rgba(75,192,192,1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        data: [65, 59, 80, 81, 56]
+        //data: [0, 1, 2, 3, 4]
+        data: mapCommission
+        //data: [65, 59, 80, 81, 56]
       }
     ]
   }
   //bar graph
-  const val = "abc";
-  const [clickCommissionReport, setClickCommissionReport] = useState([]);
+  let val;
 
+  console.log(" 111111111111 ")
+  console.log(clickCommissionReport)
 
   const callbackClickCommissionReport = (data) => {
-    console.log(" Data report");
-    console.log(data);
-    console.log(data[0]);
 
     setClickCommissionReport(data);
-    console.log(" Data88888   ");
-    console.log(typeof clickCommissionReport);
-    let myMap = new Map();
+    console.log(" Data report");
+    console.log(data);
+
+    console.log(" 222222222222222 ");
+    console.log(clickCommissionReport)
+
+
     data.forEach((r) => {
       const dateKey = r.clickDate.split("T")[0];
-      console.log("dateKeyt: " + dateKey);
-      let val = myMap.get(dateKey) ? 0 : myMap.get(dateKey);
+      console.log("dateKeyt: " + typeof dateKey);
+      console.log("myMap.get(dateKey): " + myMap.get(dateKey));
+      let val = !myMap.get(dateKey) ? 0 : myMap.get(dateKey);
+      console.log("val  : " + val);
       myMap.set(dateKey, val + r.campaign.commission);
-      console.log(" myMap 1111111111111111:  " + myMap);
+      console.log(myMap);
     });
 
-    console.log(myMap);
 
-    console.log("checkommissionReport:   " + clickCommissionReport)
+
 
   }
+  console.log(" 333333333333333333333333 ")
+  console.log(clickCommissionReport)
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -62,7 +76,7 @@ const ClickCommissionReport = () => {
       <h3>Commission Report</h3>
       <Container>
         <Row>
-          <Col sm={8}>
+          <Col sm={6}>
             <Table>
               <thead>
                 <tr>
@@ -97,13 +111,13 @@ const ClickCommissionReport = () => {
 
             </Table>
           </Col>
-          <Col sm={4}>
+          <Col sm={6}>
             <Bar
               data={state}
               options={{
                 title: {
                   display: true,
-                  text: 'Average Rainfall per month',
+                  text: 'Average Click Commission per month',
                   fontSize: 20
                 },
                 legend: {

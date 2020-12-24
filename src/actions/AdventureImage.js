@@ -219,7 +219,7 @@ export const getClickCommissionReport = (callbackClickCommissionReport) => {
     .then(
       (jsonifiedResponse) => {
         console.log("jsonifiedResponse  ");
-        console.log(typeof jsonifiedResponse);
+        console.log(jsonifiedResponse);
         callbackClickCommissionReport(jsonifiedResponse);
       })
     .catch((error) => {

@@ -10,14 +10,13 @@ import { Bar } from 'react-chartjs-2';
 const ClickCommissionReport = () => {
   const [clickCommissionReport, setClickCommissionReport] = useState([]);
   const [mapCommission, setMapCommission] = useState([]);
+
+
   let myMap = new Map();
-  console.log("myMap  ");
-  for (let mapVal of myMap.values()) {
-    setMapCommission(mapVal);
-  }
-  console.log(myMap);
+
   // bar graph
   const state = {
+
     labels: ['Jan', 'Feb', 'Mar',
       'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
@@ -26,8 +25,10 @@ const ClickCommissionReport = () => {
         backgroundColor: 'rgba(75,192,192,1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        //data: [0, 1, 2, 3, 4]
+        //data: objArray
         data: mapCommission
+
+        //data: objArray
         //data: [65, 59, 80, 81, 56]
       }
     ]
@@ -35,40 +36,48 @@ const ClickCommissionReport = () => {
   //bar graph
   let val;
 
-  console.log(" 111111111111 ")
-  console.log(clickCommissionReport)
 
   const callbackClickCommissionReport = (data) => {
 
     setClickCommissionReport(data);
-    console.log(" Data report");
-    console.log(data);
-
-    console.log(" 222222222222222 ");
-    console.log(clickCommissionReport)
-
-
     data.forEach((r) => {
       const dateKey = r.clickDate.split("T")[0];
-      console.log("dateKeyt: " + typeof dateKey);
-      console.log("myMap.get(dateKey): " + myMap.get(dateKey));
       let val = !myMap.get(dateKey) ? 0 : myMap.get(dateKey);
-      console.log("val  : " + val);
       myMap.set(dateKey, val + r.campaign.commission);
       console.log(myMap);
     });
 
+    let objArray = [];
+    let arrVal;
+    let arrCurrVal;
+    myMap.forEach((key, val) => {
+      console.log("----:");
+      console.log(val);
+      arrCurrVal = val.split('-')[1];
+      if (!arrCurrVal === '12') {
+        arrVal = arrCurrVal.split('')[1];
+        objArray[arrVal - 1] = key;
 
+      } else {
+        objArray[arrCurrVal - 1] = key;
+      }
+      console.log(arrVal);
 
+      //setMapCommission(key);
+    })
+    setMapCommission(objArray);
+    console.log("------------------------------------------:");
+    console.log(objArray)
 
   }
-  console.log(" 333333333333333333333333 ")
-  console.log(clickCommissionReport)
+
 
   useEffect(() => {
     // Update the document title using the browser API
     console.log(" getClickCommissionReport")
     getClickCommissionReport(callbackClickCommissionReport);
+
+
   }, [val]);
 
   return (

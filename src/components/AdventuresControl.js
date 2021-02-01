@@ -28,6 +28,7 @@ const AdventuresControl = () => {
 
   const callbackAdventureImage = (data) => {
     console.log(" data load ")
+    console.log(data);
 
     const action = {
       type: c.ADD_ADVENTURE,
@@ -122,10 +123,11 @@ const AdventuresControl = () => {
             {adventureList?.map(image =>
               <div class="col-md-6 col-lg-4">
                 <div class="card border-0 transform-on-hover">
-                  <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail onClick={showModal} id={image.id} />
+                  {/* <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail onClick={showModal} id={image.id} /> */}
+                  <Image src={"http://localhost:8080/api/adventureImage/downloadFile/" + image.imgUrl} thumbnail onClick={showModal} id={image.id} />
                   <div class="card-body">
                     <h6><a href="#">{image.location}</a></h6>
-                    <p class="text-muted card-text">{image.description}</p>
+                    <p class="text-muted card-text">{image.describtion}</p>
                   </div>
                 </div>
               </div>)
@@ -171,7 +173,7 @@ const AdventuresControl = () => {
                 {/*end */}
 
 
-                <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + currentImage.imageUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
+                <Image src={"http://localhost:8080/api/adventureImage/downloadFile/" + currentImage.imgUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
                 <div class="card-body">
                   <h6><a href="#">{currentImage.location}</a></h6>
                   <p class="text-muted card-text">{currentImage.description}</p>

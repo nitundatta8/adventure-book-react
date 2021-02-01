@@ -1,8 +1,8 @@
 
 
 export const getAdventureData = (callbackAdventureImage) => {
-
-  return fetch(`http://localhost:5000/api/AdventureImage`)
+  //http://localhost:5000/api/AdventureImage
+  return fetch(`http://localhost:8080/api/adventureImage/adventureList`)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {

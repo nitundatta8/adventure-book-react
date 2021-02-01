@@ -53,8 +53,10 @@ const NewProductTag = (props) => {
     event.preventDefault();
     console.log("   test -- ")
     console.log(event.target.ProductName)
-    let campaignID = event.target.ProductName.value
+    let campaignID = event.target.ProductName.value;
+    console.log("   test11 -- ")
     postTagProduct(callBackSaveTagData, x, y, imageId, campaignID);
+    console.log("   test22 -- ")
   };
 
   //post api for product tag

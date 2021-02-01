@@ -10,8 +10,6 @@ import { Bar } from 'react-chartjs-2';
 const ClickCommissionReport = () => {
   const [clickCommissionReport, setClickCommissionReport] = useState([]);
   const [mapCommission, setMapCommission] = useState([]);
-
-
   let myMap = new Map();
 
   // bar graph
@@ -25,11 +23,8 @@ const ClickCommissionReport = () => {
         backgroundColor: 'rgba(75,192,192,1)',
         borderColor: 'rgba(0,0,0,1)',
         borderWidth: 2,
-        //data: objArray
         data: mapCommission
 
-        //data: objArray
-        //data: [65, 59, 80, 81, 56]
       }
     ]
   }
@@ -49,25 +44,19 @@ const ClickCommissionReport = () => {
 
     let objArray = [];
     let arrVal;
-    let arrCurrVal;
+    let arrMonth;
     myMap.forEach((key, val) => {
-      console.log("----:");
-      console.log(val);
-      arrCurrVal = val.split('-')[1];
-      if (!arrCurrVal === '12') {
-        arrVal = arrCurrVal.split('')[1];
+      arrMonth = val.split('-')[1];
+      if (!arrMonth === '12') {
+        arrVal = arrMonth.split('')[1];
         objArray[arrVal - 1] = key;
-
       } else {
-        objArray[arrCurrVal - 1] = key;
+        objArray[arrMonth - 1] = key;
       }
-      console.log(arrVal);
 
-      //setMapCommission(key);
     })
     setMapCommission(objArray);
-    console.log("------------------------------------------:");
-    console.log(objArray)
+
 
   }
 

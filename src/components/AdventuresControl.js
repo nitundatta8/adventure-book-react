@@ -144,10 +144,7 @@ const AdventuresControl = () => {
         visible={visible}
         onOk={handleOk}
         onCancel={handleCancel}
-        width="1050px"
-
-      >
-
+        width="1050px">
 
         <div class="container">
           <div class="heading">

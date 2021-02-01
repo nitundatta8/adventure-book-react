@@ -31,7 +31,7 @@ export const postAdventure = (dataAdventure, oFormElement, token) => {
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse...................  ");
         console.log(jsonifiedResponse);
         dataAdventure(jsonifiedResponse);
       })
@@ -156,6 +156,7 @@ export const getProductNameApi = (productData, brand, category) => {
 };
 
 export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
+  console.log("$$$   " + campaignID);
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' },
@@ -167,7 +168,7 @@ export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse^^^^^^^^^^^^^  ");
         console.log(jsonifiedResponse);
         productTagData(jsonifiedResponse);
       })

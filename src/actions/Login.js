@@ -19,12 +19,12 @@ export const login = (usename, password) => {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ "username": usename, "password": password })
+    body: JSON.stringify({ "username": usename, "password": password })// userName for spring boot
   };
 
   return dispatch => {
     dispatch(requestLogin);
-
+    // http://localhost:8080/authenticate
     return fetch('http://localhost:5000/Users/authenticate', requestOptions)
       .then(response => response.json())
       .then(
@@ -33,6 +33,7 @@ export const login = (usename, password) => {
           console.log(jsonifiedResponse);
           if (jsonifiedResponse.token != null) {
             console.log("Login success ");
+            console.log(jsonifiedResponse.token);
 
             dispatch(getLoginSuccess(jsonifiedResponse));
           } else {

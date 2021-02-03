@@ -2,7 +2,7 @@
 
 export const getAdventureData = (callbackAdventureImage) => {
   //http://localhost:5000/api/AdventureImage
-  return fetch(`http://localhost:8080/api/adventureImage/adventureList`)
+  return fetch(`http://localhost:8080/adventureBook/api/adventureImage/adventureList`)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -17,17 +17,18 @@ export const getAdventureData = (callbackAdventureImage) => {
 
 export const postAdventure = (dataAdventure, oFormElement, token) => {
   const formData = new FormData(oFormElement);
-
+  console.log("formData");
+  console.log(formData);
   const requestOptions = {
     method: 'POST',
-    headers: { 'Authorization': 'bearer ' + token },
+    headers: { 'Authorization': 'Bearer ' + token },
     body: formData
   };
 
   console.log(requestOptions);
 
-
-  return fetch(`http://localhost:5000/api/AdventureImage`, requestOptions)
+  //http://localhost:5000/api/AdventureImage
+  return fetch(`http://localhost:8080/adventureBook/api/adventureImage/createAdventure`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -85,11 +86,11 @@ export const getReport = (reportData) => {
 
 export const getCommentById = (commentData, imgid, token) => {
   const requestOptions = {
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token }
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
   };
 
   //http://localhost:5000/api/Comments/getcomments/39
-  return fetch(`http://localhost:5000/api/Comments/getcomments/${imgid}`, requestOptions)
+  return fetch(`http://localhost:8080/adventureBook/api/comment/${imgid}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -107,12 +108,12 @@ export const postComment = (commentsData, comment, currentImgId, token) => {
 
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token },
-    body: JSON.stringify({ "Comments": comment, "AdventureImageId": currentImgId })
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ "comment": comment, "adventureImage": { "id": currentImgId } })
   };
 
   //http://localhost:5000/api/Comments
-  return fetch(`http://localhost:5000/api/Comments`, requestOptions)
+  return fetch(`http://localhost:8080/adventureBook/api/comment/addComment`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -125,14 +126,16 @@ export const postComment = (commentsData, comment, currentImgId, token) => {
     });
 };
 
-export const getImageById = (imageData, imgId) => {
+export const getImageById = (imageData, imgId, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
   //http://localhost:5000/api/AdventureImage/36
-  return fetch(`http://localhost:5000/api/AdventureImage/${imgId}`)
+  return fetch(`http://localhost:8080/adventureBook/api/adventureImage/${imgId}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
-        console.log(jsonifiedResponse);
+        console.log("jsonifiedResponse&&&&&&&&&&&&&&&  ");
         imageData(jsonifiedResponse);
       })
     .catch((error) => {
@@ -140,8 +143,12 @@ export const getImageById = (imageData, imgId) => {
     });
 };
 
-export const getProductNameApi = (productData, brand, category) => {
-  return fetch(`http://localhost:5000/api/Campaign/${brand}/${category}`)
+export const getProductNameApi = (productData, brand, category, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  //http://localhost:5000/api/Campaign
+  return fetch(`http://localhost:8080/adventureBook/api/campaign/${brand}/${category}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -155,20 +162,20 @@ export const getProductNameApi = (productData, brand, category) => {
 
 };
 
-export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
+export const postTagProduct = (productTagData, x, y, imageId, campaignID, token) => {
   console.log("$$$   " + campaignID);
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' },
-    body: JSON.stringify({ "XPos": x, "YPos": y, "CampaignId": campaignID, "AdventureImageId": imageId })
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ "xPos": x, "yPos": y, "campaign": { "id": campaignID }, "adventureImage": { "id": imageId } })
   };
 
-
-  return fetch(`http://localhost:5000/api/TagProduct`, requestOptions)
+  //http://localhost:5000/api/TagProduct
+  return fetch(`http://localhost:8080/adventureBook/api/tagproduct/createTag`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse^^^^^^^^^^^^^  ");
+        console.log("jsonifiedResponse^^^^^^^^^^^^^>>>  ");
         console.log(jsonifiedResponse);
         productTagData(jsonifiedResponse);
       })
@@ -177,9 +184,12 @@ export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
     });
 };
 
-export const loadImgTagById = (callBackImgTagById, imgId) => {
-  console.log(" img id api")
-  return fetch(`http://localhost:5000/api/TagProduct/getTagProductById/${imgId}`)
+export const loadImgTagById = (callBackImgTagById, imgId, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  //http://localhost:5000/api/TagProduct/getTagProductById/
+  return fetch(`http://localhost:8080/adventureBook/api/tagproduct/getTagProductByAdvId/${imgId}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {

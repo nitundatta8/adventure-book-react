@@ -18,7 +18,7 @@ import { getProductNameApi, postTagProduct } from './../actions/AdventureImage';
 
 const NewProductTag = (props) => {
   const { imageId, x, y, visibility, saveCallback } = props;
-
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const [campaignProductList, setCampaignProductList] = useState([])
 
   const tagStyleVal = {
@@ -40,14 +40,20 @@ const NewProductTag = (props) => {
     let category = document.getElementById("category").value;
     console.log(" ===  " + brand);
 
-    getProductNameApi(productData, brand, category);
+    getProductNameApi(productData, brand, category, loginStatus.token);
   };
 
   //post api for product tag
   const callBackSaveTagData = (data) => {
     console.log(" post tag data api");
+    console.log(data);
     saveCallback();
+    getImageWithTag()
   };
+
+  const getImageWithTag = () => {
+
+  }
 
   const saveTag = (event) => {
     event.preventDefault();
@@ -55,7 +61,7 @@ const NewProductTag = (props) => {
     console.log(event.target.ProductName)
     let campaignID = event.target.ProductName.value;
     console.log("   test11 -- ")
-    postTagProduct(callBackSaveTagData, x, y, imageId, campaignID);
+    postTagProduct(callBackSaveTagData, x, y, imageId, campaignID, loginStatus.token);
     console.log("   test22 -- ")
   };
 

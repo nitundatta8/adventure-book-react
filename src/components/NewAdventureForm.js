@@ -32,7 +32,10 @@ const NewAdventureForm = () => {
   };
 
   const okModal = () => {
+    console.log("uploadImg.id...  " + uploadImg.id);
     setVisible(false);
+
+
     history.push(`/product/${uploadImg.id}`);
   }
 
@@ -40,6 +43,7 @@ const NewAdventureForm = () => {
   const dataAdventure = (data) => {
     showModal();
     console.log(" dataAdventure ");
+    console.log(data);
     setUploadImg(data);
 
   }
@@ -87,11 +91,11 @@ const NewAdventureForm = () => {
           </div>
           <div class="form-group">
             <label for="text"><h5>Description:</h5></label><br />
-            <input type="text" class=" form-control-sm" id="location" name="description" />
+            <input type="text" class=" form-control-sm" id="describtion" name="describtion" />
           </div>
 
           <div class="form-group">
-            <input type="file" name="ImgFile" onChange={readURL} />
+            <input type="file" name="file" onChange={readURL} />
           </div>
           <div class="form-group">
             <Image id="previewImage" src={imagePreviewSrc} alt="preview image" style={sizeImage} />

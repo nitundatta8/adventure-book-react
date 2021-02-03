@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const ProductTagging = () => {
   const { imgId } = useParams();
-  console.log("id !!! Img " + imgId);
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const [imgData, setImgData] = useState({})
   const [tagProducts, setTagProducts] = useState([]);
 
@@ -27,7 +27,7 @@ const ProductTagging = () => {
   const newTagCreated = () => {
     console.log("call back save");
     setNewProdTagVisibility("");
-    loadImgTagById(callBackImgTagById, imgId);
+    loadImgTagById(callBackImgTagById, imgId, loginStatus.token);
     //----callback
   }
 
@@ -44,13 +44,14 @@ const ProductTagging = () => {
 
   const callbackImageData = (data) => {
     console.log("Api image data");
+    console.log(data);
     setImgData(data);
   }
 
   const title = "image load";
   useEffect(() => {
     console.log(" --  image load --");
-    getImageById(callbackImageData, imgId);
+    getImageById(callbackImageData, imgId, loginStatus.token);
   }, [title]);
 
   const sizeImage = {
@@ -97,10 +98,10 @@ const ProductTagging = () => {
                   id={tag.id} />
               )
             }
-            <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + imgData.imageUrl} thumbnail style={sizeImage} id="pointer_div" onClick={showNewProductTag} />
+            <Image src={"http://localhost:8080/adventureBook/api/adventureImage/downloadFile/" + imgData.imgUrl} thumbnail style={sizeImage} id="pointer_div" onClick={showNewProductTag} />
             <div class="card-body">
               <h6><a href="#">{imgData.location}</a></h6>
-              <p class="text-muted card-text">{imgData.description}</p>
+              <p class="text-muted card-text">{imgData.describtion}</p>
             </div>
           </div>
 

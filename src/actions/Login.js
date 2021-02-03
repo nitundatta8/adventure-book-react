@@ -25,7 +25,7 @@ export const login = (usename, password) => {
   return dispatch => {
     dispatch(requestLogin);
     // http://localhost:8080/authenticate     http://localhost:5000/Users/authenticate
-    return fetch('http://localhost:8080/authenticate', requestOptions)
+    return fetch('http://localhost:8080/adventureBook/authenticate', requestOptions)
       .then(response => response.json())
       .then(
         (jsonifiedResponse) => {

@@ -84,7 +84,7 @@ const AdventuresControl = () => {
           console.log(" -- id --" + image.id)
           getCommentById(commentData, image.id, loginStatus.token);
           setCurrentImage(image);
-          loadImgTagById(callbackImgTagById, image.id);
+          //loadImgTagById(callbackImgTagById, image.id);
         }
       })
     }
@@ -124,7 +124,7 @@ const AdventuresControl = () => {
               <div class="col-md-6 col-lg-4">
                 <div class="card border-0 transform-on-hover">
                   {/* <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail onClick={showModal} id={image.id} /> */}
-                  <Image src={"http://localhost:8080/api/adventureImage/downloadFile/" + image.imgUrl} thumbnail onClick={showModal} id={image.id} />
+                  <Image src={"http://localhost:8080/adventureBook/api/adventureImage/downloadFile/" + image.imgUrl} thumbnail onClick={showModal} id={image.id} />
                   <div class="card-body">
                     <h6><a href="#">{image.location}</a></h6>
                     <p class="text-muted card-text">{image.describtion}</p>
@@ -142,7 +142,7 @@ const AdventuresControl = () => {
 
 
       <Modal bodyStyle={sizeModal}
-        title="Basic Modal"
+        title="Adventure Image"
         visible={visible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -173,7 +173,7 @@ const AdventuresControl = () => {
                 {/*end */}
 
 
-                <Image src={"http://localhost:8080/api/adventureImage/downloadFile/" + currentImage.imgUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
+                <Image src={"http://localhost:8080/adventureBook/api/adventureImage/downloadFile/" + currentImage.imgUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
                 <div class="card-body">
                   <h6><a href="#">{currentImage.location}</a></h6>
                   <p class="text-muted card-text">{currentImage.description}</p>
@@ -184,7 +184,7 @@ const AdventuresControl = () => {
               <h3>Comments</h3>
               <div class="col-md-12 col-lg-12"  >
 
-                <ul>{commentList?.map(comment => <li>{comment?.comments} ( {comment?.user?.firstName})</li>)}
+                <ul>{commentList?.map(comment => <li>{comment?.comment} ( {comment?.user?.firstName})</li>)}
                 </ul>
               </div>
               <div class="col-md-12 col-lg-12"  >

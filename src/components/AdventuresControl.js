@@ -84,7 +84,7 @@ const AdventuresControl = () => {
           console.log(" -- id --" + image.id)
           getCommentById(commentData, image.id, loginStatus.token);
           setCurrentImage(image);
-          //loadImgTagById(callbackImgTagById, image.id);
+          loadImgTagById(callbackImgTagById, image.id, loginStatus.token);
         }
       })
     }

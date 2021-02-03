@@ -48,12 +48,10 @@ const NewProductTag = (props) => {
     console.log(" post tag data api");
     console.log(data);
     saveCallback();
-    getImageWithTag()
+
   };
 
-  const getImageWithTag = () => {
 
-  }
 
   const saveTag = (event) => {
     event.preventDefault();

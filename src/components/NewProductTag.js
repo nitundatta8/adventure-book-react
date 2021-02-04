@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getProductNameApi, postTagProduct } from './../actions/AdventureImage';
+import { getProductNameApi, postTagProduct, loadImgTagById } from './../actions/AdventureImage';
 
 
 

@@ -43,23 +43,23 @@ export const postAdventure = (dataAdventure, oFormElement, token) => {
 
 };
 
-export const postCampaign = (dataCampaign, brand, category, productName, productUrl, startDate, endDate, commission) => {
+export const postCampaign = (dataCampaign, brand, category, productName, productUrl, startDate, endDate, commission, token) => {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
     body: JSON.stringify({
-      "Brand": brand, "Category": category, "ProductName": productName,
-      "ProductUrl": productUrl, "StartDate": startDate,
-      "EndDate": endDate, "Commission": commission
+      "brand": brand, "category": category, "productName": productName,
+      "productUrl": productUrl, "startDate": startDate,
+      "endDate": endDate, "commission": commission
     })
   };
 
-
-  return fetch(`http://localhost:5000/api/Campaign`, requestOptions)
+  //http://localhost:5000/api/Campaign
+  return fetch(`http://localhost:8080/adventureBook/api/campaign/createCampaign`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse Campaign ");
         console.log(jsonifiedResponse);
         dataCampaign(jsonifiedResponse);
       })
@@ -69,13 +69,15 @@ export const postCampaign = (dataCampaign, brand, category, productName, product
 
 };
 //http://localhost:5000/api/Campaign
-export const getReport = (reportData) => {
-
-  return fetch(`http://localhost:5000/api/Campaign`)
+export const getCampaignReport = (reportData, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  return fetch(`http://localhost:8080/adventureBook/api/campaign/campaignList`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse getCampaignReport ");
         console.log(jsonifiedResponse);
         reportData(jsonifiedResponse);
       })
@@ -136,6 +138,7 @@ export const getImageById = (imageData, imgId, token) => {
     .then(
       (jsonifiedResponse) => {
         console.log("jsonifiedResponse&&&&&&&&&&&&&&&  ");
+        console.log(jsonifiedResponse);
         imageData(jsonifiedResponse);
       })
     .catch((error) => {
@@ -203,15 +206,16 @@ export const loadImgTagById = (callBackImgTagById, imgId, token) => {
 
 };
 
-export const postClickCommision = (callbackClickCommision, campaignId, adventureImageId) => {
+export const postClickCommision = (callbackClickCommision, campaignId, adventureImageId, token) => {
+  console.log("campaignId " + campaignId + " adventureImageId " + adventureImageId)
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' },
-    body: JSON.stringify({ "CampaignId": campaignId, "AdventureImageId": adventureImageId })
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ "campaign": { "id": campaignId }, "adventureImage": { "id": adventureImageId } })
   };
 
-
-  return fetch(`http://localhost:5000/api/ClickCommision`, requestOptions)
+  //http://localhost:5000/api/ClickCommision
+  return fetch(`http://localhost:8080/adventureBook/api/clickCommision/addCommission`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {

@@ -4,6 +4,7 @@ import { postClickCommision } from './../actions/AdventureImage';
 
 const ProductTag = (props) => {
   const { productUrl, campaignId, adventureImageId } = props;
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
 
   const tagStyle = {
     left: (props.x - 13).toString() + 'px',
@@ -20,8 +21,8 @@ const ProductTag = (props) => {
 
   const getCommision = (event) => {
     event.preventDefault();
-    console.log(" get commition");
-    postClickCommision(callbackClickCommision, campaignId, adventureImageId);
+    console.log(" get commission");
+    postClickCommision(callbackClickCommision, campaignId, adventureImageId, loginStatus.token);
     window.open(productUrl, "_blank");
   };
   const cursorStyle = {

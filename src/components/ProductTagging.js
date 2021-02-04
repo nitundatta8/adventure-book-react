@@ -14,6 +14,7 @@ const ProductTagging = () => {
   const [tagProducts, setTagProducts] = useState([]);
 
 
+
   const [newProdTagVisibility, setNewProdTagVisibility] = useState("");
   const [posX, setPosX] = useState(0);
   const [posY, setPosY] = useState(0);
@@ -52,6 +53,7 @@ const ProductTagging = () => {
   useEffect(() => {
     console.log(" --  image load --");
     getImageById(callbackImageData, imgId, loginStatus.token);
+    loadImgTagById(callBackImgTagById, imgId, loginStatus.token);
   }, [title]);
 
   const sizeImage = {

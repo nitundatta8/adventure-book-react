@@ -5,7 +5,7 @@ import { useHistory, Link } from 'react-router-dom';
 
 
 const CampaignForm = () => {
-
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const history = useHistory();
   const dataCampaign = (data) => {
     console.log(" Data campaign");
@@ -18,7 +18,7 @@ const CampaignForm = () => {
     postCampaign(dataCampaign, event.target.Brand.value,
       event.target.Category.value, event.target.ProductName.value,
       event.target.ProductUrl.value, event.target.StartDate.value,
-      event.target.EndDate.value, event.target.Commission.value);
+      event.target.EndDate.value, event.target.Commission.value, loginStatus.token);
     history.push("/report")
 
   }
@@ -58,19 +58,23 @@ const CampaignForm = () => {
         <label for="StartDate">Start Date</label>
         <input
           type='date'
+          id="startDate"
           name='StartDate' /><br />
         <label for="EndDate">End Date</label>
         <input
           type='date'
+          id="endDate"
           name='EndDate'
           placeholder='End Date' /><br />
         <input type="number"
+          id="commission"
           name="Commission"
           placeholder="1.0" step="0.01" min="0" max="5" /><br />
         <button type='submit'>Submit</button>
       </form>
 
       <Link to={`/report`} > <h3>Campaign Report</h3> </Link>
+
     </React.Fragment>
   );
 

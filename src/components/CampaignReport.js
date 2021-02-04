@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
-import { getReport } from './../actions/AdventureImage';
+import { getCampaignReport } from './../actions/AdventureImage';
 import { Link } from 'react-router-dom';
 
 
 const CampaignReport = () => {
   const val = "abc";
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const [reports, setReport] = useState([]);
 
 
   const reportData = (data) => {
     console.log(" Data report");
+    console.log(data);
     setReport(data)
     console.log(reports)
 
@@ -19,7 +21,7 @@ const CampaignReport = () => {
   useEffect(() => {
     // Update the document title using the browser API
 
-    getReport(reportData);
+    getCampaignReport(reportData, loginStatus.token);
   }, [val]);
 
   return (

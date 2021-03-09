@@ -166,8 +166,8 @@ const AdventuresControl = () => {
                       productUrl={tag.campaign.productUrl}
                       category={tag.campaign.category}
                       id={tag.id}
-                      campaignId={tag.campaignId}
-                      adventureImageId={tag.adventureImageId} />
+                      campaignId={tag.campaign.id}
+                      adventureImageId={tag.adventureImage.id} />
                   )
                 }
                 {/*end */}

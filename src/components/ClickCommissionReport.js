@@ -8,6 +8,7 @@ import { Bar } from 'react-chartjs-2';
 
 
 const ClickCommissionReport = () => {
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const [clickCommissionReport, setClickCommissionReport] = useState([]);
   const [mapCommission, setMapCommission] = useState([]);
   let myMap = new Map();
@@ -33,28 +34,31 @@ const ClickCommissionReport = () => {
 
 
   const callbackClickCommissionReport = (data) => {
-
+    console.log("Dataaaaaaaaaa")
+    console.log(data)
     setClickCommissionReport(data);
     data.forEach((r) => {
       const dateKey = r.clickDate.split("T")[0];
       let val = !myMap.get(dateKey) ? 0 : myMap.get(dateKey);
       myMap.set(dateKey, val + r.campaign.commission);
+      console.log("myMapppppppppppppppppppp")
+
       console.log(myMap);
     });
 
     let objArray = [];
-    let arrVal;
     let arrMonth;
     myMap.forEach((key, val) => {
-      arrMonth = val.split('-')[1];
-      if (!arrMonth === '12') {
-        arrVal = arrMonth.split('')[1];
-        objArray[arrVal - 1] = key;
+      arrMonth = parseInt(val.split('-')[1]);
+      if (arrMonth !== 12) {
+        objArray[--arrMonth] = key;
       } else {
-        objArray[arrMonth - 1] = key;
+        objArray[--arrMonth] = key;
       }
 
     })
+    console.log("objArrayyyyyyyyyyyyyyyy")
+    console.log(objArray)
     setMapCommission(objArray);
 
 
@@ -64,7 +68,7 @@ const ClickCommissionReport = () => {
   useEffect(() => {
     // Update the document title using the browser API
     console.log(" getClickCommissionReport")
-    getClickCommissionReport(callbackClickCommissionReport);
+    getClickCommissionReport(callbackClickCommissionReport, loginStatus.token);
 
 
   }, [val]);
@@ -74,11 +78,11 @@ const ClickCommissionReport = () => {
       <h3>Commission Report</h3>
       <Container>
         <Row>
-          <Col sm={6}>
-            <Table>
+          <Col sm={7}>
+            <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Id</th>
+                  {/* <th>Id</th> */}
                   <th>Brand</th>
                   <th>Category</th>
                   <th>Product Name</th>
@@ -93,11 +97,11 @@ const ClickCommissionReport = () => {
                 <tbody>
                   <tr>
 
-                    <td>{report.clickCommisionId}</td>
+                    {/* <td>{report.id}</td> */}
                     <td>{report.campaign.brand}</td>
                     <td>{report.campaign.category}</td>
                     <a target="_blank" href={report.campaign.productUrl}><td>{report.campaign.productName}</td></a>
-                   k['kk']==
+
                     <td>{report.campaign.commission}</td>
                     <td>{report.user.firstName}</td>
                     <td><Moment format="YYYY-MM-DD hh:mm a">{report.clickDate}</Moment></td>
@@ -109,7 +113,7 @@ const ClickCommissionReport = () => {
 
             </Table>
           </Col>
-          <Col sm={6}>
+          <Col sm={5}>
             <Bar
               data={state}
               options={{

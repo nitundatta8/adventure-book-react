@@ -30,17 +30,21 @@ function LoginForm() {
 
       <h1>Sign in</h1>
       <form onSubmit={doSignUp}>
+        <label>Try with Test User Name book</label>
+        <br />
         <input
           type='text'
           name='text'
           placeholder='User Name' /><br />
+        <label>Try with Test Password book</label><br />
         <input
           type='password'
           name='password'
-          placeholder='Password' /><br />
+          placeholder='Password' />
+        <br /> <br />
         <button type='submit'>Sign in</button>
-      </form>
-    </React.Fragment>
+      </form >
+    </React.Fragment >
   );
 
 

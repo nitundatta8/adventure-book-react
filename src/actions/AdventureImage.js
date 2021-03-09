@@ -1,8 +1,8 @@
-
+//${process.env.HOST_NAME}
 
 export const getAdventureData = (callbackAdventureImage) => {
   //http://localhost:5000/api/AdventureImage
-  return fetch(`http://localhost:8080/adventureBook/api/adventureImage/adventureList`)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/adventureImage/adventureList`)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -28,7 +28,7 @@ export const postAdventure = (dataAdventure, oFormElement, token) => {
   console.log(requestOptions);
 
   //http://localhost:5000/api/AdventureImage
-  return fetch(`http://localhost:8080/adventureBook/api/adventureImage/createAdventure`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/adventureImage/createAdventure`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -55,7 +55,7 @@ export const postCampaign = (dataCampaign, brand, category, productName, product
   };
 
   //http://localhost:5000/api/Campaign
-  return fetch(`http://localhost:8080/adventureBook/api/campaign/createCampaign`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/campaign/createCampaign`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -73,7 +73,7 @@ export const getCampaignReport = (reportData, token) => {
   const requestOptions = {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
   };
-  return fetch(`http://localhost:8080/adventureBook/api/campaign/campaignList`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/campaign/campaignList`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -92,7 +92,7 @@ export const getCommentById = (commentData, imgid, token) => {
   };
 
   //http://localhost:5000/api/Comments/getcomments/39
-  return fetch(`http://localhost:8080/adventureBook/api/comment/${imgid}`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/comment/${imgid}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -115,7 +115,7 @@ export const postComment = (commentsData, comment, currentImgId, token) => {
   };
 
   //http://localhost:5000/api/Comments
-  return fetch(`http://localhost:8080/adventureBook/api/comment/addComment`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/comment/addComment`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -133,7 +133,7 @@ export const getImageById = (imageData, imgId, token) => {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
   };
   //http://localhost:5000/api/AdventureImage/36
-  return fetch(`http://localhost:8080/adventureBook/api/adventureImage/${imgId}`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/adventureImage/${imgId}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -151,7 +151,7 @@ export const getProductNameApi = (productData, brand, category, token) => {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
   };
   //http://localhost:5000/api/Campaign
-  return fetch(`http://localhost:8080/adventureBook/api/campaign/${brand}/${category}`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/campaign/${brand}/${category}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -174,7 +174,7 @@ export const postTagProduct = (productTagData, x, y, imageId, campaignID, token)
   };
 
   //http://localhost:5000/api/TagProduct
-  return fetch(`http://localhost:8080/adventureBook/api/tagproduct/createTag`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/tagproduct/createTag`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -192,7 +192,7 @@ export const loadImgTagById = (callBackImgTagById, imgId, token) => {
     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
   };
   //http://localhost:5000/api/TagProduct/getTagProductById/
-  return fetch(`http://localhost:8080/adventureBook/api/tagproduct/getTagProductByAdvId/${imgId}`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/tagproduct/getTagProductByAdvId/${imgId}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -215,7 +215,7 @@ export const postClickCommision = (callbackClickCommision, campaignId, adventure
   };
 
   //http://localhost:5000/api/ClickCommision
-  return fetch(`http://localhost:8080/adventureBook/api/clickCommision/addCommission`, requestOptions)
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/clickCommision/addCommission`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -228,13 +228,16 @@ export const postClickCommision = (callbackClickCommision, campaignId, adventure
     });
 };
 
-export const getClickCommissionReport = (callbackClickCommissionReport) => {
-  return fetch(`http://localhost:5000/api/ClickCommision`)
+export const getClickCommissionReport = (callbackClickCommissionReport, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  //http://localhost:5000/api/ClickCommision
+  return fetch(`http://${process.env.HOST_NAME}/adventureBook/api/clickCommision/clickCommisionList`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
-        console.log(jsonifiedResponse);
+        console.log("jsonifiedResponse,,,,,,,,,,,,,,  ");
         callbackClickCommissionReport(jsonifiedResponse);
       })
     .catch((error) => {

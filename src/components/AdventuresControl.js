@@ -124,7 +124,7 @@ const AdventuresControl = () => {
               <div class="col-md-6 col-lg-4">
                 <div class="card border-0 transform-on-hover">
                   {/* <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail onClick={showModal} id={image.id} /> */}
-                  <Image src={"http://localhost:8080/adventureBook/api/adventureImage/downloadFile/" + image.imgUrl} thumbnail onClick={showModal} id={image.id} />
+                  <Image src={`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/downloadFile/` + image.imgUrl} thumbnail onClick={showModal} id={image.id} />
                   <div class="card-body">
                     <h6><a href="#">{image.location}</a></h6>
                     <p class="text-muted card-text">{image.describtion}</p>

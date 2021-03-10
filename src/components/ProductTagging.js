@@ -100,7 +100,7 @@ const ProductTagging = () => {
                   id={tag.id} />
               )
             }
-            <Image src={"http://localhost:8080/adventureBook/api/adventureImage/downloadFile/" + imgData.imgUrl} thumbnail style={sizeImage} id="pointer_div" onClick={showNewProductTag} />
+            <Image src={`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/downloadFile/` + imgData.imgUrl} thumbnail style={sizeImage} id="pointer_div" onClick={showNewProductTag} />
             <div class="card-body">
               <h6><a href="#">{imgData.location}</a></h6>
               <p class="text-muted card-text">{imgData.describtion}</p>

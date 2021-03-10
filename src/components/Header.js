@@ -8,6 +8,7 @@ import * as c from '../actions/ActionsType';
 
 function Header() {
   const dispatch = useDispatch();
+  console.log("process.env.REACT_APP_APP_Title: " + process.env.REACT_APP_APP_Title);
   const callbackPlaceByNameOrDes = (data) => {
     console.log("callback  PlaceByNameOrDes");
 
@@ -20,7 +21,7 @@ function Header() {
   };
 
   const handleSearch = (event) => {
-    console.log(" handleSearch ")
+    console.log(" handleSearch :")
     event.preventDefault();
     if (event.target.place.value.trim() != "") {
       getAdventureData(callbackPlaceByNameOrDes, event.target.place.value);
@@ -33,7 +34,7 @@ function Header() {
       <Container>
         <div >
           <Navbar bg="light" expand="lg" className="bg-light justify-content-lg-center">
-            <Navbar.Brand href="/">Adventure Book</Navbar.Brand>
+            <Navbar.Brand href="/">{process.env.REACT_APP_APP_Title}</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">

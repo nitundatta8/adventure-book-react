@@ -173,7 +173,7 @@ const AdventuresControl = () => {
                 {/*end */}
 
 
-                <Image src={"http://localhost:8080/adventureBook/api/adventureImage/downloadFile/" + currentImage.imgUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
+                <Image src={`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/downloadFile/` + currentImage.imgUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
                 <div class="card-body">
                   <h6><a href="#">{currentImage.location}</a></h6>
                   <p class="text-muted card-text">{currentImage.description}</p>

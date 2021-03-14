@@ -30,6 +30,7 @@ const NewProductTag = (props) => {
 
   const productData = (data) => {
     console.log(" product api call");
+    console.log(data[0].productName);
     setCampaignProductList(data);
 
   };
@@ -46,7 +47,6 @@ const NewProductTag = (props) => {
   //post api for product tag
   const callBackSaveTagData = (data) => {
     console.log(" post tag data api");
-    console.log(data);
     saveCallback();
 
   };

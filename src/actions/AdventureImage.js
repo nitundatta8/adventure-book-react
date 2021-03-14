@@ -238,23 +238,10 @@ export const getClickCommissionReport = (callbackClickCommissionReport, token) =
     .then(
       (jsonifiedResponse) => {
         console.log("jsonifiedResponse,,,,,,,,,,,,,,  ");
+        console.log(jsonifiedResponse);
         callbackClickCommissionReport(jsonifiedResponse);
       })
     .catch((error) => {
       callbackClickCommissionReport(error);
     });
 };
-
-// export const getAdventureData = (callbackPlaceByNameOrDes, place) => {
-//   return fetch(`http://localhost:5000/api/AdventureImage/places/${place}/`)
-//     .then(response => response.json())
-//     .then(
-//       (jsonifiedResponse) => {
-//         console.log("jsonifiedResponse  ");
-//         console.log(jsonifiedResponse);
-//         callbackPlaceByNameOrDes(jsonifiedResponse);
-//       })
-//     .catch((error) => {
-//       callbackPlaceByNameOrDes(error);
-//     });
-// };

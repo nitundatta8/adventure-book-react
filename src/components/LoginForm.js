@@ -7,27 +7,20 @@ import { useParams, useLocation } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
 
-function LoginForm() {
-  //const { redirectTo } = useParams();
-  // const location = useLocation();
-  // let url = location.pathname.substring(7);
-  // if (url === "") {
-  //   url = '/';
-  // }
-  // console.log(" url ");
-  // console.log(url);
 
+function LoginForm() {
   const dispatch = useDispatch();
   //const history = useHistory();
   const loginStatus = useSelector(state => state.user.login);
   const authenticationFail = useSelector(state => state.user.authenticationFail);
+
+
   return (
 
     <React.Fragment>
       {loginStatus ? <Redirect to={`/`} /> : <h3></h3>}
 
       {authenticationFail ? <h3>Login Fail {authenticationFail}</h3> : <h3></h3>}
-
       <h1>Sign in</h1>
       <form onSubmit={doSignUp}>
         <label>Try with Test User Name book</label>
@@ -44,6 +37,9 @@ function LoginForm() {
         <br /> <br />
         <button type='submit'>Sign in</button>
       </form >
+
+
+
     </React.Fragment >
   );
 

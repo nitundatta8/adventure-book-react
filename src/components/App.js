@@ -11,6 +11,7 @@ import CampaignReport from './CampaignReport';
 import LoginForm from './LoginForm';
 import ProductTagging from './ProductTagging';
 import ClickCommissionReport from './ClickCommissionReport';
+import IndexHeader from './IndexHeader';
 
 
 
@@ -19,6 +20,7 @@ function App() {
   return (
     <Router>
       <Header />
+      <IndexHeader />
       <div className='App'>
 
         <Switch>

@@ -65,18 +65,6 @@ function LoginForm() {
                   <input type="password" name="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                {/* <div className="form-group">
-                      <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                      </div>
-                    </div> */}
-
-
-                {/* <p className="forgot-password text-right">
-                      Forgot <a href="#">password?</a>
-                    </p> */}
-
                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
               </form>
             </div>
@@ -89,11 +77,12 @@ function LoginForm() {
       {loginStatus ? <Redirect to={`/`} /> : <h3></h3>}
 
       {authenticationFail ? <Modal
-        title="Loggin Failure"
+        // title="Loggin Failure"
         visible={visible}
         onOk={handleclickOk}
         onCancel={handleclickOk}
       >
+        <h4>Loggin Failure</h4>
       </Modal> : <h3></h3>}
 
 
@@ -112,3 +101,17 @@ function LoginForm() {
 
 };
 export default LoginForm;
+
+
+
+{/* <div className="form-group">
+                      <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                      </div>
+                    </div> */}
+
+
+{/* <p className="forgot-password text-right">
+                      Forgot <a href="#">password?</a>
+                    </p> */}

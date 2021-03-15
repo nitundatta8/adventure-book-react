@@ -5,7 +5,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as c from '../actions/ActionsType';
-import LoginForm from './LoginForm';
+
 import { useSelector } from 'react-redux';
 
 function Header() {
@@ -77,3 +77,6 @@ function Header() {
 }
 
 export default Header;
+
+{/* <NavDropdown.Divider />
+  <NavDropdown.Item as={Link} to="#action/3.4">Separated link</NavDropdown.Item> */}

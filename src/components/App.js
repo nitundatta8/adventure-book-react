@@ -27,6 +27,7 @@ function App() {
 
           <Route path="/signin">
             <LoginForm />
+            <AdventuresControl />
           </Route>
           <Route path="/newAdventureForm">
             <NewAdventureForm />

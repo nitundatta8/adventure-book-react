@@ -1,17 +1,18 @@
-import { useHistory } from 'react-router-dom';
-import { postAdventure } from './../actions/AdventureImage';
-import { Redirect } from 'react-router-dom';
 import React, { useState } from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import { postAdventure } from './../actions/AdventureImage';
 import { useSelector } from 'react-redux';
 import { Image } from 'react-bootstrap';
 import { Modal } from 'antd';
 
 
+
 const NewAdventureForm = () => {
 
   const loginStatus = JSON.parse(window.localStorage.getItem('user'));
+
   // const loginStatus = useSelector(state => state.user.login);// using from redux store
-  console.log(" loginStatus " + loginStatus);
+
   const user = useSelector(state => state.user);
   console.log(user);
   // const token = useSelector(state => state.user.userInfo.token);
@@ -79,8 +80,8 @@ const NewAdventureForm = () => {
   return (
     <React.Fragment>
       <div className="container">
-        {!loginStatus ? <Redirect to={`/signin`} /> : <h3></h3>}
-        {authenticationFail ? <h3>Login Fail {authenticationFail}</h3> : <h3></h3>}
+        {/* {!login_status ? <Redirect to={`/signin`} /> : <h3></h3>} */}
+        {/* {authenticationFail ? <h3>Login Fail {authenticationFail}</h3> : <h3></h3>} */}
 
 
         <h4>Adventure form</h4>

@@ -1,12 +1,14 @@
 import React from 'react';
 import { postCampaign } from './../actions/AdventureImage';
-import { useHistory, Link } from 'react-router-dom';
+import { Redirect, useHistory, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 const CampaignForm = () => {
   const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const history = useHistory();
+
   const dataCampaign = (data) => {
     console.log(" Data campaign");
   }
@@ -27,6 +29,7 @@ const CampaignForm = () => {
   return (
 
     <React.Fragment>
+      {/* {!login_status ? <Redirect to={`/signin`} /> : <h3></h3>} */}
       <h4>Campaign Form</h4>
       <form onSubmit={uploadAction.bind(this)}>
         <label for="Brand">Choose a Brand:</label><br />

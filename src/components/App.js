@@ -12,6 +12,7 @@ import LoginForm from './LoginForm';
 import ProductTagging from './ProductTagging';
 import ClickCommissionReport from './ClickCommissionReport';
 import IndexHeader from './IndexHeader';
+import PageHeader from './PageHeader';
 
 
 
@@ -20,22 +21,26 @@ function App() {
   return (
     <Router>
       <Header />
-      <IndexHeader />
+      {/* <IndexHeader /> */}
       <div className='App'>
 
         <Switch>
 
           <Route path="/signin">
             <LoginForm />
+            <IndexHeader />
             <AdventuresControl />
           </Route>
           <Route path="/newAdventureForm">
+            <PageHeader />
             <NewAdventureForm />
           </Route>
           <Route path="/campaignForm">
+            <PageHeader />
             <CampaignForm />
           </Route>
           <Route path="/report">
+            <PageHeader />
             <CampaignReport />
           </Route>
 
@@ -43,13 +48,16 @@ function App() {
             <ProductTag />
           </Route> */}
           <Route path="/product/:imgId">
+            <PageHeader />
             <ProductTagging />
           </Route>
           <Route path="/commissionreport">
+            <PageHeader />
             <ClickCommissionReport />
           </Route>
 
           <Route path="/">
+            <IndexHeader />
             <AdventuresControl />
           </Route>
 

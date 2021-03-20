@@ -24,6 +24,10 @@ const CampaignForm = () => {
     history.push("/report")
 
   }
+  const formSize = {
+    height: '450px',
+    width: '450px'
+  }
 
 
   return (
@@ -31,52 +35,82 @@ const CampaignForm = () => {
     <React.Fragment>
       {/* {!login_status ? <Redirect to={`/signin`} /> : <h3></h3>} */}
       <h4>Campaign Form</h4>
-      <form onSubmit={uploadAction.bind(this)}>
-        <label for="Brand">Choose a Brand:</label><br />
+      <div>----------------------------------------------------------</div>
+      <div className="container" style={formSize}>
+        <div class="card-body">
+          <form onSubmit={uploadAction.bind(this)}>
+            <div className="form-group">
+              <div class="row align-items-start">
+                <label><h5>Brand</h5></label>
+                <select class="form-control" id="brand" name="Brand">
+                  <option value="Reebok">Reebok</option>
+                  <option value="Adidas">Adidas</option>
+                  <option value="Rei">REI</option>
 
-        <select id="brand" name="Brand">
-          <option value="Reebok">Reebok</option>
-          <option value="Adidas">Adidas</option>
-          <option value="Rei">REI</option>
+                </select><br />
+              </div>
+            </div>
 
-        </select><br />
-        <label for="Category">Choose a Category:</label><br />
+            <div className="form-group">
+              <div class="row align-items-start">
+                <label><h5>Category</h5></label>
+                <select class="form-control" id="category" name="Category">
+                  <option value="Sking">Sking</option>
+                  <option value="Biking">Biking</option>
+                  <option value="Swiming">Swiming</option>
+                  <option value="Camping">Camping</option>
+                  <option value="Hiking">Hiking</option>
 
-        <select id="category" name="Category">
-          <option value="Sking">Sking</option>
-          <option value="Biking">Biking</option>
-          <option value="Swiming">Swiming</option>
-          <option value="Camping">Camping</option>
-          <option value="Hiking">Hiking</option>
+                </select><br />
+              </div>
+            </div>
 
-        </select><br />
-        <input
-          type='text'
-          name='ProductName'
-          placeholder='Product Name' /><br />
-        <input
-          type='text'
-          name='ProductUrl'
-          placeholder='Product Url' /><br />
-        <label for="StartDate">Start Date</label>
-        <input
-          type='date'
-          id="startDate"
-          name='StartDate' /><br />
-        <label for="EndDate">End Date</label>
-        <input
-          type='date'
-          id="endDate"
-          name='EndDate'
-          placeholder='End Date' /><br />
-        <input type="number"
-          id="commission"
-          name="Commission"
-          placeholder="1.0" step="0.01" min="0" max="5" /><br />
-        <button type='submit'>Submit</button>
-      </form>
+            <div className="form-group">
+              <div class="row align-items-start">
+                <label><h5>Product Name</h5></label>
+                <input class="form-control" type='text' name='ProductName' placeholder='Product Name' /><br />
+              </div>
+            </div>
 
-      <Link to={`/report`} > <h3>Campaign Report</h3> </Link>
+            <div className="form-group">
+              <div class="row align-items-start">
+                <label><h5>Product Url</h5></label>
+                <input class="form-control" type='text' name='ProductUrl' placeholder='Product Url' /><br />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <div class="row align-items-start">
+                <label><h5>Start Date</h5></label>
+                <input class="form-control" type='date' id="startDate" name='StartDate' placeholder='Start Date' /><br />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <div class="row align-items-start">
+                <label><h5>End Date</h5></label>
+                <input class="form-control" type='date' id="endDate" name='EndDate' placeholder='End Date' /><br />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <div class="row align-items-start">
+                <label><h5>Commission</h5></label>
+                <input class="form-control" type="number" id="commission" name="Commission" placeholder="1.0" step="0.01" min="0" max="5" /><br />
+              </div>
+            </div>
+
+            <div className="form-group">
+              <div class="row align-items-start">
+                <button class="form-control" className="btn btn-primary btn-block" type='submit'>Submit</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      {/* <Link to={`/report`} > <h3>Campaign Report</h3> </Link> */}
 
     </React.Fragment>
   );

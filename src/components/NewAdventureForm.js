@@ -109,23 +109,38 @@ const NewAdventureForm = () => {
       {login_status ? <div className="container" style={formSize} >
         <div class="card-body">
           <h4>ADVENTURE FORM</h4>
+          <div>----------------------------------------------------------</div>
           <form encType="multipart/form-data" onSubmit={uploadAction.bind(this)}>
             <div className="form-group">
-              <label>Location</label>
-              <input type="text" className="form-control" id="location" name="location" placeholder="Location" />
+              <div class="row align-items-start">
+                <label><h5>Location</h5></label>
+                <input type="text" className="form-control" id="location" name="location" placeholder="Location" />
+              </div>
             </div>
             <div className="form-group">
-              <label>Description</label><br />
-              <input type="text" className="form-control" id="describtion" name="describtion" placeholder="Description" />
+              <div class="row align-items-start">
+                <label><h5>Description</h5></label><br />
+                <input type="text" className="form-control" id="describtion" name="describtion" placeholder="Description" />
+              </div>
+            </div>
+            <div className="form-group">
+              <div class="row align-items-start">
+                <input type="file" name="file" onChange={readURL} />
+              </div>
             </div>
 
+
             <div className="form-group">
-              <input type="file" name="file" onChange={readURL} />
+              <div class="row align-items-start">
+                <Image id="previewImage" src={imagePreviewSrc} alt="preview image" style={sizeImage} className="form-control" />
+              </div>
             </div>
             <div className="form-group">
-              <Image id="previewImage" src={imagePreviewSrc} alt="preview image" style={sizeImage} className="form-control" />
+              <div class="row align-items-start">
+                <button type='submit' className="btn btn-primary btn-block">Submit</button>
+              </div>
             </div>
-            <button type='submit' className="btn btn-primary btn-block">Submit</button>
+
 
           </form>
         </div>

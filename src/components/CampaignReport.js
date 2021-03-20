@@ -61,8 +61,6 @@ const CampaignReport = () => {
         </Table>
       </Container>
 
-
-      <Link to={`/`} > <h3>Back</h3> </Link>
     </React.Fragment>
   );
 };

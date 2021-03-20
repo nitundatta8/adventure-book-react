@@ -203,11 +203,6 @@ const AdventuresControl = () => {
         </div>
       </Modal>
 
-
-      <Link to={`/newAdventureForm`} > <h3>Share Your Adventure</h3> </Link>
-      <Link to={`/CampaignForm`} > <h3>Add Campaign</h3> </Link>
-      <Link to={`/report`} > <h3>Campaign Report</h3> </Link>
-      <Link to={`/commissionreport`} > <h3>Commission Report</h3> </Link>
     </React.Fragment >
   );
 

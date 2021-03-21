@@ -25,7 +25,7 @@ _July 17, 2020_
 * run 'npm start'
 
 ### Backend Restful Services follow the GitHub repo
-https://github.com/nitundatta8/capstone-adventurebook.git
+https://github.com/nitundatta8/Adventure-Book-Restful-Web-Service
 
 ## Specification
   * Users can post pictures and tag items on the picture.

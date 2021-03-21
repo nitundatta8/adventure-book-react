@@ -28,7 +28,8 @@ function App() {
 
           <Route path="/signin">
             <LoginForm />
-            <IndexHeader />
+            <PageHeader />
+            {/* <IndexHeader /> */}
             <AdventuresControl />
           </Route>
           <Route path="/newAdventureForm">

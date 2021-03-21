@@ -104,9 +104,11 @@ const AdventuresControl = () => {
   const sizeModal = {
     height: '650px',
 
+
   }
   const sizeImage = {
     height: '500px'
+
   }
 
   ///888***********************

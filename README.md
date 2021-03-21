@@ -15,7 +15,7 @@ _July 17, 2020_
 ![Diagram](./public/img/intro.jpg)
 
 ## Demo Video
-  * https://www.youtube.com/watch?v=HrF3ozj_MVw
+  * https://youtu.be/FO1q1ARhhvY
 
 ## Setup/Installation Requirements
 

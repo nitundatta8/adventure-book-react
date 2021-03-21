@@ -1,13 +1,17 @@
 
 import React from "react";
-
-// reactstrap components
-//import { Container } from "reactstrap";
 import { Container } from 'react-bootstrap';
 
-// core components
+
 
 function IndexHeader() {
+  const line = {
+    paddingTop: 50,
+    paddingRight: 70,
+    textAlign: "left",
+    fontStyle: "oblique",
+    color: "green"
+  }
   return (
     <>
       <div

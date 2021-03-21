@@ -69,10 +69,11 @@ const ProductTagging = () => {
     console.log("event.offsetX" + event.pageX);
     console.log("event.offsetY" + event.pageY);
 
-    let pos_x = event.offsetX ? (event.offsetX) : event.pageX - image.offsetLeft - 300;
-    let pos_y = event.offsetY ? (event.offsetY) : event.pageY - image.offsetTop - 214;
+    let pos_x = event.offsetX ? (event.offsetX) : event.pageX - image.offsetLeft - 230;
+    let pos_y = event.offsetY ? (event.offsetY) : event.pageY - image.offsetTop - 480;
 
-
+    // 300
+    //214
     setNewProdTagVisibility("visible");
     setPosX(pos_x);
     setPosY(pos_y);
@@ -83,7 +84,7 @@ const ProductTagging = () => {
   return (
     <>
       <h4>Tag your Product </h4>
-      <h4>Product Id : {imgId}</h4>
+      {/* <h4>Product Id : {imgId}</h4> */}
       <section class="gallery-block cards-gallery">
         <div class="container">
           <div class="col-md-8 col-lg-6" style={containerStyle} id="container">
@@ -109,7 +110,7 @@ const ProductTagging = () => {
 
         </div>
       </section>
-      <Link to={`/`} > <h3>Back</h3> </Link>
+
     </>
   )
 };

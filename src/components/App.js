@@ -57,7 +57,8 @@ function App() {
           </Route>
 
           <Route path="/">
-            <IndexHeader />
+            <PageHeader />
+            {/* <IndexHeader /> */}
             <AdventuresControl />
           </Route>
 

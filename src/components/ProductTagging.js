@@ -9,9 +9,10 @@ import { Link } from 'react-router-dom';
 
 const ProductTagging = () => {
   const { imgId } = useParams();
-  console.log("id !!! Img " + imgId);
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const [imgData, setImgData] = useState({})
   const [tagProducts, setTagProducts] = useState([]);
+
 
 
   const [newProdTagVisibility, setNewProdTagVisibility] = useState("");
@@ -27,7 +28,7 @@ const ProductTagging = () => {
   const newTagCreated = () => {
     console.log("call back save");
     setNewProdTagVisibility("");
-    loadImgTagById(callBackImgTagById, imgId);
+    loadImgTagById(callBackImgTagById, imgId, loginStatus.token);
     //----callback
   }
 
@@ -44,13 +45,15 @@ const ProductTagging = () => {
 
   const callbackImageData = (data) => {
     console.log("Api image data");
+    console.log(data);
     setImgData(data);
   }
 
   const title = "image load";
   useEffect(() => {
     console.log(" --  image load --");
-    getImageById(callbackImageData, imgId);
+    getImageById(callbackImageData, imgId, loginStatus.token);
+    loadImgTagById(callBackImgTagById, imgId, loginStatus.token);
   }, [title]);
 
   const sizeImage = {
@@ -66,10 +69,11 @@ const ProductTagging = () => {
     console.log("event.offsetX" + event.pageX);
     console.log("event.offsetY" + event.pageY);
 
-    let pos_x = event.offsetX ? (event.offsetX) : event.pageX - image.offsetLeft - 300;
-    let pos_y = event.offsetY ? (event.offsetY) : event.pageY - image.offsetTop - 214;
+    let pos_x = event.offsetX ? (event.offsetX) : event.pageX - image.offsetLeft - 230;
+    let pos_y = event.offsetY ? (event.offsetY) : event.pageY - image.offsetTop - 480;
 
-
+    // 300
+    //214
     setNewProdTagVisibility("visible");
     setPosX(pos_x);
     setPosY(pos_y);
@@ -80,7 +84,7 @@ const ProductTagging = () => {
   return (
     <>
       <h4>Tag your Product </h4>
-      <h4>Product Id : {imgId}</h4>
+      {/* <h4>Product Id : {imgId}</h4> */}
       <section class="gallery-block cards-gallery">
         <div class="container">
           <div class="col-md-8 col-lg-6" style={containerStyle} id="container">
@@ -97,16 +101,16 @@ const ProductTagging = () => {
                   id={tag.id} />
               )
             }
-            <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + imgData.imageUrl} thumbnail style={sizeImage} id="pointer_div" onClick={showNewProductTag} />
+            <Image src={`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/downloadFile/` + imgData.imgUrl} thumbnail style={sizeImage} id="pointer_div" onClick={showNewProductTag} />
             <div class="card-body">
               <h6><a href="#">{imgData.location}</a></h6>
-              <p class="text-muted card-text">{imgData.description}</p>
+              <p class="text-muted card-text">{imgData.describtion}</p>
             </div>
           </div>
 
         </div>
       </section>
-      <Link to={`/`} > <h3>Back</h3> </Link>
+
     </>
   )
 };

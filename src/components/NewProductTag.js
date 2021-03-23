@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getProductNameApi, postTagProduct } from './../actions/AdventureImage';
+import { getProductNameApi, postTagProduct, loadImgTagById } from './../actions/AdventureImage';
 
 
 
@@ -18,7 +18,7 @@ import { getProductNameApi, postTagProduct } from './../actions/AdventureImage';
 
 const NewProductTag = (props) => {
   const { imageId, x, y, visibility, saveCallback } = props;
-
+  const loginStatus = JSON.parse(window.localStorage.getItem('user'));
   const [campaignProductList, setCampaignProductList] = useState([])
 
   const tagStyleVal = {
@@ -30,6 +30,7 @@ const NewProductTag = (props) => {
 
   const productData = (data) => {
     console.log(" product api call");
+    console.log(data[0].productName);
     setCampaignProductList(data);
 
   };
@@ -40,14 +41,17 @@ const NewProductTag = (props) => {
     let category = document.getElementById("category").value;
     console.log(" ===  " + brand);
 
-    getProductNameApi(productData, brand, category);
+    getProductNameApi(productData, brand, category, loginStatus.token);
   };
 
   //post api for product tag
   const callBackSaveTagData = (data) => {
     console.log(" post tag data api");
     saveCallback();
+
   };
+
+
 
   const saveTag = (event) => {
     event.preventDefault();
@@ -55,7 +59,7 @@ const NewProductTag = (props) => {
     console.log(event.target.ProductName)
     let campaignID = event.target.ProductName.value;
     console.log("   test11 -- ")
-    postTagProduct(callBackSaveTagData, x, y, imageId, campaignID);
+    postTagProduct(callBackSaveTagData, x, y, imageId, campaignID, loginStatus.token);
     console.log("   test22 -- ")
   };
 

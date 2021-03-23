@@ -8,14 +8,14 @@ _July 17, 2020_
 ### Adventure lovers can share their outdoor activity pictures and stories on this website. So other users can view  their pictures and learn about places and activities. Users can comment and like the picture.
 ### Advertising partners can post add on their outdoor gears, clothes, bag, tent, etc. with product URL and details. When a user will post a picture, they can tag all the outdoor gears or other stuff in the picture. If other user clicks on those tag items, they will be redirected to the product website. For each click user who posted that picture will earn a commission for flowing traffic to the product site.
 
-## Component Tree
-![Diagram](./public/capstoneDiagram1.png)
+<!-- ## Component Tree
+![Diagram](./public/capstoneDiagram1.png) -->
 
 ### Website Template
-![Diagram](./public/img/AdventureBookSite.png)
+![Diagram](./public/img/intro.jpg)
 
 ## Demo Video
-  * https://www.youtube.com/watch?v=HrF3ozj_MVw
+  * https://youtu.be/FO1q1ARhhvY
 
 ## Setup/Installation Requirements
 
@@ -25,7 +25,7 @@ _July 17, 2020_
 * run 'npm start'
 
 ### Backend Restful Services follow the GitHub repo
-https://github.com/nitundatta8/capstone-adventurebook.git
+https://github.com/nitundatta8/Adventure-Book-Restful-Web-Service
 
 ## Specification
   * Users can post pictures and tag items on the picture.

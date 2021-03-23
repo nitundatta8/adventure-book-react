@@ -1,8 +1,8 @@
-
+//${process.env.REACT_APP_HOST_NAME}/*** REACT_APP is must */
 
 export const getAdventureData = (callbackAdventureImage) => {
-
-  return fetch(`http://localhost:5000/api/AdventureImage`)
+  //http://localhost:5000/api/AdventureImage
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/adventureList`)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -17,17 +17,18 @@ export const getAdventureData = (callbackAdventureImage) => {
 
 export const postAdventure = (dataAdventure, oFormElement, token) => {
   const formData = new FormData(oFormElement);
-
+  console.log("formData");
+  console.log(formData);
   const requestOptions = {
     method: 'POST',
-    headers: { 'Authorization': 'bearer ' + token },
+    headers: { 'Authorization': 'Bearer ' + token },
     body: formData
   };
 
   console.log(requestOptions);
 
-
-  return fetch(`http://localhost:5000/api/AdventureImage`, requestOptions)
+  //http://localhost:5000/api/AdventureImage
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/createAdventure`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -42,23 +43,23 @@ export const postAdventure = (dataAdventure, oFormElement, token) => {
 
 };
 
-export const postCampaign = (dataCampaign, brand, category, productName, productUrl, startDate, endDate, commission) => {
+export const postCampaign = (dataCampaign, brand, category, productName, productUrl, startDate, endDate, commission, token) => {
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
     body: JSON.stringify({
-      "Brand": brand, "Category": category, "ProductName": productName,
-      "ProductUrl": productUrl, "StartDate": startDate,
-      "EndDate": endDate, "Commission": commission
+      "brand": brand, "category": category, "productName": productName,
+      "productUrl": productUrl, "startDate": startDate,
+      "endDate": endDate, "commission": commission
     })
   };
 
-
-  return fetch(`http://localhost:5000/api/Campaign`, requestOptions)
+  //http://localhost:5000/api/Campaign
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/campaign/createCampaign`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse Campaign ");
         console.log(jsonifiedResponse);
         dataCampaign(jsonifiedResponse);
       })
@@ -68,13 +69,15 @@ export const postCampaign = (dataCampaign, brand, category, productName, product
 
 };
 //http://localhost:5000/api/Campaign
-export const getReport = (reportData) => {
-
-  return fetch(`http://localhost:5000/api/Campaign`)
+export const getCampaignReport = (reportData, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/campaign/campaignList`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse getCampaignReport ");
         console.log(jsonifiedResponse);
         reportData(jsonifiedResponse);
       })
@@ -85,11 +88,11 @@ export const getReport = (reportData) => {
 
 export const getCommentById = (commentData, imgid, token) => {
   const requestOptions = {
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token }
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
   };
 
   //http://localhost:5000/api/Comments/getcomments/39
-  return fetch(`http://localhost:5000/api/Comments/getcomments/${imgid}`, requestOptions)
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/comment/${imgid}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -107,12 +110,12 @@ export const postComment = (commentsData, comment, currentImgId, token) => {
 
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' + token },
-    body: JSON.stringify({ "Comments": comment, "AdventureImageId": currentImgId })
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ "comment": comment, "adventureImage": { "id": currentImgId } })
   };
 
   //http://localhost:5000/api/Comments
-  return fetch(`http://localhost:5000/api/Comments`, requestOptions)
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/comment/addComment`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -125,13 +128,16 @@ export const postComment = (commentsData, comment, currentImgId, token) => {
     });
 };
 
-export const getImageById = (imageData, imgId) => {
+export const getImageById = (imageData, imgId, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
   //http://localhost:5000/api/AdventureImage/36
-  return fetch(`http://localhost:5000/api/AdventureImage/${imgId}`)
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/${imgId}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse&&&&&&&&&&&&&&&  ");
         console.log(jsonifiedResponse);
         imageData(jsonifiedResponse);
       })
@@ -140,8 +146,12 @@ export const getImageById = (imageData, imgId) => {
     });
 };
 
-export const getProductNameApi = (productData, brand, category) => {
-  return fetch(`http://localhost:5000/api/Campaign/${brand}/${category}`)
+export const getProductNameApi = (productData, brand, category, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  //http://localhost:5000/api/Campaign
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/campaign/${brand}/${category}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -155,20 +165,20 @@ export const getProductNameApi = (productData, brand, category) => {
 
 };
 
-export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
+export const postTagProduct = (productTagData, x, y, imageId, campaignID, token) => {
   console.log("$$$   " + campaignID);
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' },
-    body: JSON.stringify({ "XPos": x, "YPos": y, "CampaignId": campaignID, "AdventureImageId": imageId })
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ "xPos": x, "yPos": y, "campaign": { "id": campaignID }, "adventureImage": { "id": imageId } })
   };
 
-
-  return fetch(`http://localhost:5000/api/TagProduct`, requestOptions)
+  //http://localhost:5000/api/TagProduct
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/tagproduct/createTag`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse^^^^^^^^^^^^^  ");
+        console.log("jsonifiedResponse^^^^^^^^^^^^^>>>  ");
         console.log(jsonifiedResponse);
         productTagData(jsonifiedResponse);
       })
@@ -177,9 +187,12 @@ export const postTagProduct = (productTagData, x, y, imageId, campaignID) => {
     });
 };
 
-export const loadImgTagById = (callBackImgTagById, imgId) => {
-  console.log(" img id api")
-  return fetch(`http://localhost:5000/api/TagProduct/getTagProductById/${imgId}`)
+export const loadImgTagById = (callBackImgTagById, imgId, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  //http://localhost:5000/api/TagProduct/getTagProductById/
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/tagproduct/getTagProductByAdvId/${imgId}`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -193,15 +206,16 @@ export const loadImgTagById = (callBackImgTagById, imgId) => {
 
 };
 
-export const postClickCommision = (callbackClickCommision, campaignId, adventureImageId) => {
+export const postClickCommision = (callbackClickCommision, campaignId, adventureImageId, token) => {
+  console.log("campaignId " + campaignId + " adventureImageId " + adventureImageId)
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Authorization': 'bearer ' },
-    body: JSON.stringify({ "CampaignId": campaignId, "AdventureImageId": adventureImageId })
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+    body: JSON.stringify({ "campaign": { "id": campaignId }, "adventureImage": { "id": adventureImageId } })
   };
 
-
-  return fetch(`http://localhost:5000/api/ClickCommision`, requestOptions)
+  //http://localhost:5000/api/ClickCommision
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/clickCommision/addCommission`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
@@ -214,12 +228,16 @@ export const postClickCommision = (callbackClickCommision, campaignId, adventure
     });
 };
 
-export const getClickCommissionReport = (callbackClickCommissionReport) => {
-  return fetch(`http://localhost:5000/api/ClickCommision`)
+export const getClickCommissionReport = (callbackClickCommissionReport, token) => {
+  const requestOptions = {
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
+  };
+  //http://localhost:5000/api/ClickCommision
+  return fetch(`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/clickCommision/clickCommisionList`, requestOptions)
     .then(response => response.json())
     .then(
       (jsonifiedResponse) => {
-        console.log("jsonifiedResponse  ");
+        console.log("jsonifiedResponse,,,,,,,,,,,,,,  ");
         console.log(jsonifiedResponse);
         callbackClickCommissionReport(jsonifiedResponse);
       })
@@ -227,17 +245,3 @@ export const getClickCommissionReport = (callbackClickCommissionReport) => {
       callbackClickCommissionReport(error);
     });
 };
-
-// export const getAdventureData = (callbackPlaceByNameOrDes, place) => {
-//   return fetch(`http://localhost:5000/api/AdventureImage/places/${place}/`)
-//     .then(response => response.json())
-//     .then(
-//       (jsonifiedResponse) => {
-//         console.log("jsonifiedResponse  ");
-//         console.log(jsonifiedResponse);
-//         callbackPlaceByNameOrDes(jsonifiedResponse);
-//       })
-//     .catch((error) => {
-//       callbackPlaceByNameOrDes(error);
-//     });
-// };

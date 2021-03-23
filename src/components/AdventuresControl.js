@@ -28,6 +28,7 @@ const AdventuresControl = () => {
 
   const callbackAdventureImage = (data) => {
     console.log(" data load ")
+    console.log(data);
 
     const action = {
       type: c.ADD_ADVENTURE,
@@ -83,7 +84,7 @@ const AdventuresControl = () => {
           console.log(" -- id --" + image.id)
           getCommentById(commentData, image.id, loginStatus.token);
           setCurrentImage(image);
-          loadImgTagById(callbackImgTagById, image.id);
+          loadImgTagById(callbackImgTagById, image.id, loginStatus.token);
         }
       })
     }
@@ -103,9 +104,11 @@ const AdventuresControl = () => {
   const sizeModal = {
     height: '650px',
 
+
   }
   const sizeImage = {
     height: '500px'
+
   }
 
   ///888***********************
@@ -122,10 +125,11 @@ const AdventuresControl = () => {
             {adventureList?.map(image =>
               <div class="col-md-6 col-lg-4">
                 <div class="card border-0 transform-on-hover">
-                  <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail onClick={showModal} id={image.id} />
+                  {/* <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + image.imageUrl} thumbnail onClick={showModal} id={image.id} /> */}
+                  <Image src={`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/downloadFile/` + image.imgUrl} thumbnail onClick={showModal} id={image.id} />
                   <div class="card-body">
                     <h6><a href="#">{image.location}</a></h6>
-                    <p class="text-muted card-text">{image.description}</p>
+                    <p class="text-muted card-text">{image.describtion}</p>
                   </div>
                 </div>
               </div>)
@@ -140,7 +144,7 @@ const AdventuresControl = () => {
 
 
       <Modal bodyStyle={sizeModal}
-        title="Basic Modal"
+        title="Adventure Image"
         visible={visible}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -164,14 +168,14 @@ const AdventuresControl = () => {
                       productUrl={tag.campaign.productUrl}
                       category={tag.campaign.category}
                       id={tag.id}
-                      campaignId={tag.campaignId}
-                      adventureImageId={tag.adventureImageId} />
+                      campaignId={tag.campaign.id}
+                      adventureImageId={tag.adventureImage.id} />
                   )
                 }
                 {/*end */}
 
 
-                <Image src={"http://localhost:5000/api/AdventureImage/adventureImages/" + currentImage.imageUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
+                <Image src={`http://${process.env.REACT_APP_HOST_NAME}/adventureBook/api/adventureImage/downloadFile/` + currentImage.imgUrl} thumbnail onClick={showModal} id={currentImage.id} style={sizeImage} />
                 <div class="card-body">
                   <h6><a href="#">{currentImage.location}</a></h6>
                   <p class="text-muted card-text">{currentImage.description}</p>
@@ -182,7 +186,7 @@ const AdventuresControl = () => {
               <h3>Comments</h3>
               <div class="col-md-12 col-lg-12"  >
 
-                <ul>{commentList?.map(comment => <li>{comment?.comments} ( {comment?.user?.firstName})</li>)}
+                <ul>{commentList?.map(comment => <li>{comment?.comment} ( {comment?.user?.firstName})</li>)}
                 </ul>
               </div>
               <div class="col-md-12 col-lg-12"  >
@@ -201,11 +205,6 @@ const AdventuresControl = () => {
         </div>
       </Modal>
 
-
-      <Link to={`/newAdventureForm`} > <h3>Share Your Adventure</h3> </Link>
-      <Link to={`/CampaignForm`} > <h3>Add Campaign</h3> </Link>
-      <Link to={`/report`} > <h3>Campaign Report</h3> </Link>
-      <Link to={`/commissionreport`} > <h3>Commission Report</h3> </Link>
     </React.Fragment >
   );
 
